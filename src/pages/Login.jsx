@@ -75,8 +75,12 @@ const handleSubmit = (e) => {
             authDispatch({type: 'AUTH_LOGIN', payload: user})
             localStorage.setItem('user', JSON.stringify(user))
         }
+        if (user.rol === 'Comerciante') {
+          <Navigate to='/comerciante'/>
 
-        <Navigate to='/*'/>
+        } else if (user.rol === 'Cliente') {
+          <Navigate to='/cliente'/>
+        }
     })()
 };
 
