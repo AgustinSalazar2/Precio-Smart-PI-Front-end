@@ -2,6 +2,10 @@ import { type } from '../types/type'
 
 export const authReducer = (state, action) => {
     switch (action.type) {
+        case 'AUTH_LOGIN':
+            return {
+                ...action.payload
+            }
         case type.login:
             localStorage.setItem('user',JSON.stringify({
                 ...action.payload,
