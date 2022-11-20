@@ -1,24 +1,25 @@
 import { Route, Routes } from "react-router-dom"
-import { NavBar } from "../ui/NavBar"
-import { TodosScreen } from '../pages/TodosScreen'
 import { Home } from "../pages/Home"
-import { Comerciante } from "../pages/Comerciante"
+import { CargarProducto } from "../pages/CargarProducto"
+import { HomeCliente } from "../pages/HomeCliente"
+import { HomeComerciante } from "../pages/HomeComerciante"
 // import { Footer } from "../ui/Footer"
 
 export const DashboardRoutes = () => {
   return (
     <>
-      <NavBar />
       <Routes>
-        {/* Rutas para el comerciante */}
-        <Route path="/comerciante" element={ <Comerciante/> } />
 
-        <Route path="/home" element={ <Home/> } />
+        <Route path="/" element={ <Home/> } />
+
+        {/* Rutas para el comerciante */}
+        <Route path="/comerciante" element={ <HomeComerciante /> } />
+        <Route path='/add-prod' element={ <CargarProducto /> }/>
+
 
         {/* Ruta para el cliente */}
-        <Route path="/cliente" element={ <Home/> } />
+        <Route path="/cliente" element={ <HomeCliente/> } />
         
-
         
       </Routes>
       {/* <Footer/> */}

@@ -8,7 +8,7 @@ import img from '../assets/img/verificar.png'
 
 // Corregir los estilos y modificar las etiquetas "a" por los componentes NavLink 
 // que provee react-router-dom
-export const NavBar = () => {
+export const NavBarCliente = () => {
 
   const { authDispatch } = useContext(AuthContext);
   
@@ -24,7 +24,7 @@ export const NavBar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to='/comerciante'>Mis Productos</NavLink>
+                <NavLink className="nav-link active" aria-current="page" to='/cliente'>Acerca de...</NavLink>
               </li>
 
               <li className="nav-item">
@@ -32,7 +32,7 @@ export const NavBar = () => {
               </li>
 
               <li className="nav-item">
-                <NavLink className="nav-link active" to='/add-prod'>Cargar Productos</NavLink>
+                <NavLink className="nav-link active" to='/cliente'>Contactenos</NavLink>
               </li>
             </ul>
 
