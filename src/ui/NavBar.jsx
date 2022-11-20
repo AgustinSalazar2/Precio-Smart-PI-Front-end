@@ -32,7 +32,7 @@ export const NavBar = () => {
               </li>
 
               <li className="nav-item">
-                <NavLink className="nav-link active" to='/todos'>Cargar Productos</NavLink>
+                <NavLink className="nav-link active" to='/comerciante'>Cargar Productos</NavLink>
               </li>
             </ul>
 

@@ -14,7 +14,7 @@ export const Comerciante = () => {
   //const { authDispatch } = useContext(AuthContext);
 
   return (
-      <div className='container p-5'>
+      <div className='container p-4'>
         <div className='row p-4'>
       
         <div className='col-lg-4'>
