@@ -43,7 +43,7 @@ const handleSubmit = (e) => {
         // Se modifican las opciones del fetch, añadiendo los datos del formulario
         options.body = JSON.stringify({ username, password })
 
-        const resp = await fetch('http://localhost:5000/login', options)
+        const resp = await fetch('http://localhost:4000/login', options)
 
         // Si el ok es false, significa que se produjo un error en la petición
         if (!resp.ok) alert('Revise las credenciales y vuelva a intentarlo');
@@ -52,7 +52,8 @@ const handleSubmit = (e) => {
         console.log(data);
 
         //Obtengo los datos del usuario
-        const resp2 = await fetch('http://localhost:5000/userlog',{
+        /* 
+        const resp2 = await fetch('http://localhost:4000/userlog',{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,22 +61,23 @@ const handleSubmit = (e) => {
             }
         });
         const data2 = await resp2.json();
-        console.log(data2)
+        console.log(data2) 
+        */
         
         // Aquí se debe redireccionar a vista principal (home) - requiere react-router-dom (recomendable v6)
         if (data.token) {
             const user = {
                 token: data.token,
-                username: data2.username,
-                email: data2.email,
+                username: data.username,
+                email: data.email,
                 isLogged: true,
-                rol: data2.rol,
-                active: data2.active
+                rol: data.rol,
+                active: data.active
             }
             authDispatch({type: 'AUTH_LOGIN', payload: user})
             localStorage.setItem('user', JSON.stringify(user))
         }
-        if (user.rol === 'Comerciante') {
+        if (data.user.rol === 'comerciante') {
           <Navigate to='/comerciante'/>
 
         } else if (user.rol === 'Cliente') {
@@ -157,6 +159,7 @@ const handleSubmit = (e) => {
       </div>
 
       <div>
+
         {/* Modal Registro*/}
         <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
@@ -195,7 +198,14 @@ const handleSubmit = (e) => {
                         <p><small>Al hacer clic en "Registrarte", aceptas nuestras Condiciones, la Política de privacidad y la Política de cookies.</small></p>
                       </div>
 
-                      <button onClick={()=>authDispatch({type: type.login})} className="w-100 btn btn-md btn-success" data-bs-dismiss="modal" type="submit">Registrarse</button>
+                      <button 
+                        onClick={()=>authDispatch({type: type.login})}
+                        className="w-100 btn btn-md btn-success" 
+                        data-bs-dismiss="modal" 
+                        type="submit"
+                      >
+                        Registrarse
+                      </button>
                     </form>
                   </main>
                 </div>
