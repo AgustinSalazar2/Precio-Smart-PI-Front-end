@@ -5,6 +5,7 @@ export const HomeCliente = () => {
   return (
     <>
         <NavBarCliente />
+        <h1>Home Cliente</h1>
     </>
   )
 }

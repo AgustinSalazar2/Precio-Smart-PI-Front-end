@@ -73,18 +73,13 @@ const handleSubmit = (e) => {
                 isLogged: true,
                 rol: data.user.rol,
                 active: data.user.active,
-                // comercio : {}
+                comercio : data.comerce
             }
             authDispatch({type: 'AUTH_LOGIN', payload: user})
             localStorage.setItem('user', JSON.stringify(user))
         }
-        if (data.user.rol === 'comerciante') {
-          
-          return (<Navigate to='/comerciante'/>)
-
-        } else if (user.rol === 'Cliente') {
-          return (<Navigate to='/cliente'/>)
-        }
+        (data.user.rol === 'comerciante') ? <Navigate to='/comerciante'/> : <Navigate to='/cliente'/>
+        
     })()
 };
 
