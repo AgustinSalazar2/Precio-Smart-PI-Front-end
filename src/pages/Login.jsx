@@ -68,20 +68,22 @@ const handleSubmit = (e) => {
         if (data.token) {
             const user = {
                 token: data.token,
-                username: data.username,
-                email: data.email,
+                username: data.user.username,
+                email: data.user.email,
                 isLogged: true,
-                rol: data.rol,
-                active: data.active
+                rol: data.user.rol,
+                active: data.user.active,
+                // comercio : {}
             }
             authDispatch({type: 'AUTH_LOGIN', payload: user})
             localStorage.setItem('user', JSON.stringify(user))
         }
         if (data.user.rol === 'comerciante') {
-          <Navigate to='/comerciante'/>
+          
+          return (<Navigate to='/comerciante'/>)
 
         } else if (user.rol === 'Cliente') {
-          <Navigate to='/cliente'/>
+          return (<Navigate to='/cliente'/>)
         }
     })()
 };
