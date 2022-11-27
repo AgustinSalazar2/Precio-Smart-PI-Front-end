@@ -64,7 +64,6 @@ const handleSubmit = (e) => {
         console.log(data2) 
         */
         
-        // Aquí se debe redireccionar a vista principal (home) - requiere react-router-dom (recomendable v6)
         if (data.token) {
             const user = {
                 token: data.token,
@@ -77,16 +76,14 @@ const handleSubmit = (e) => {
             }
             authDispatch({type: 'AUTH_LOGIN', payload: user})
             localStorage.setItem('user', JSON.stringify(user))
-        }
-        (data.user.rol === 'comerciante') ? <Navigate to='/comerciante'/> : <Navigate to='/cliente'/>
-        
+        }        
     })()
 };
 
   return (
-      <div className='container p-5'>
-      <div className='row p-4'>
-        <div className='col-lg-5 p-5 mt-5'>
+      <div className='container p-3 mb-5'>
+      <div className='row p-5'>
+        <div className='col-lg-5'>
           <h1 className='mt-5'><strong>PrecioSmart</strong></h1>
           <img className="mb-4" src={img} alt="" width={80} height={75} />
         </div>

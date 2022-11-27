@@ -24,7 +24,7 @@ export const NavBarCliente = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to='/cliente'>Acerca de...</NavLink>
+                <NavLink className="nav-link active" aria-current="page" to='/'>Buscar Poductos</NavLink>
               </li>
 
               <li className="nav-item">
@@ -32,14 +32,9 @@ export const NavBarCliente = () => {
               </li>
 
               <li className="nav-item">
-                <NavLink className="nav-link active" to='/cliente'>Contactenos</NavLink>
+                <NavLink className="nav-link active" to='/add-prod'>Cargar Productos</NavLink>
               </li>
             </ul>
-
-            <form className="d-flex w-50 mx-auto mb-2 mt-2" role="search">
-              <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success">Search</button>
-            </form>
 
             <li className="nav-item ms-auto">
               <button onClick={()=>authDispatch({type: type.logout})} className=" btn btn-sm btn-danger">Cerrar Sesión</button>

@@ -1,18 +1,13 @@
 import React from "react";
 
-//import React, { useContext } from 'react'
 import "../assets/signin.css";
 import img from "../assets/img/verificar.png";
-import { NavBar } from "../ui/NavBar";
-//import { AuthContext } from '../context/AuthContext'
-// import { type  } from "../types/type";
 
 export const CargarProducto = () => {
   //const { authDispatch } = useContext(AuthContext);
 
   return (
     <>
-      <NavBar />
       <div className="container p-4">
         <div className="row p-4">
           <div className="col-lg-4">

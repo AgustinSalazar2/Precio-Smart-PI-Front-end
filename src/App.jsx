@@ -9,19 +9,6 @@ const init = ()=>{
 }
 
 function App() {
-  // const user = {
-  //   isLogged: true,
-  //   username: 'zeus'
-  // }
-
-  // const tasks = [
-  //   {
-  //     id: 1,
-  //     title: 'Completar prácticos',
-  //     description: 'Completar el práctico de useContext'
-  //   }
-  // ];
-
 
   const [ user, authDispatch ] = useReducer(authReducer, [], init)
 
