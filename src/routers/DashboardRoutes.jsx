@@ -9,7 +9,7 @@ export const DashboardRoutes = () => {
   
   return (
     <>
-      {(user.rol==='Comerciante' ? <HomeComerciante /> : <HomeCliente />)}
+      {(user.rol==='comerciante' ? <HomeComerciante /> : <HomeCliente />)}
     </>
   )
 }
