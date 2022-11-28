@@ -71,12 +71,7 @@ export const CargarProducto = () => {
                   {/* <button type="button" className="w-90 btn btn-md btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   Registrarse
                 </button> */}
-                  <button
-                    className="w-75 btn btn-md btn-primary mb-2"
-                    type="submit"
-                  >
-                    Confirmar la carga
-                  </button>
+                  
                 </div>
 
                 {/* <NavLink className="nav-link active" aria-current="page" to='/todos'>Home</NavLink> */}

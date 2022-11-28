@@ -32,6 +32,7 @@ export const BuscarProductos = () => {
   //Filtrado mas resumido
   const results = !search ? [] : products.filter((dato)=> dato.productName.toLowerCase().includes(search.toLocaleLowerCase()))
   console.log('Este es el results', results);
+  
   //Hook useEfect
   useEffect(()=>{
     showData()
@@ -39,6 +40,48 @@ export const BuscarProductos = () => {
   
   //Renderizado
   return (
-    <div>BuscarProductos</div>
+    <>
+      <div className='container justify-content-center col-lg-8 mt-5'>
+        <div className='container col-lg-6 justify-content-center'>
+          <input
+          value={search}
+          onChange={buscador}
+          type="text"
+          placeholder='search' 
+          className='form-control mt-3' />
+        </div>
+        <table className='table table-striped table-hover mt-5 shadow-lg table-control'>
+          <thead>
+            {
+              (search)
+              ? 
+                <tr>
+                  <th>Nombre</th>
+                  <th>Marca</th>
+                  <th>Presentación</th>
+                  <th>Precio</th>
+                </tr>
+              
+              : <tr></tr>
+            }
+          </thead>
+
+          <tbody>
+            
+            {
+              results.map((prod)=>(
+                <tr key={prod._id}>
+                  <td>{prod.productName}</td>
+                  <td>{prod.marca}</td>
+                  <td>{prod.presentacion}</td>
+                  <td>${prod.precio}</td>
+                </tr>
+              ))
+            }
+
+          </tbody>
+        </table>
+      </div>
+    </>
   )
 }

@@ -10,7 +10,7 @@ export const HomeCliente = () => {
     <>
         <NavBarCliente />
         <Routes>
-          <Route path='/' element={ <BuscarProductos /> }/>
+          <Route path='/*' element={ <BuscarProductos /> }/>
           <Route path='/add-prod' element={ <CargarProducto /> }/>
         </Routes>
     </>
