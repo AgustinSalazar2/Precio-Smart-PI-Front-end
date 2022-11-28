@@ -7,36 +7,62 @@ import img from "../assets/img/verificar.png";
 export const CargarProducto = () => {
   //const { authDispatch } = useContext(AuthContext);
 
-//************************** INPUT NOMBRE  ******************************** */
-const [nombreProd, setNombreProd] = useState("");
+ /*  const [state, setNombreProd] = useState("");
 
-const funcnombreProd = (e) => {
-  setNombreProd(e.target.value);
-}
-console.log(nombreProd);
-//*************************** INPUT MARCA  ****************************** */
+  const funcnombreProd = (e) => {
+    setNombreProd(e.target.value);
+  }
+  console.log(nombreProd); */
 
-const [marcaProd, setMarcaProd] = useState("");
 
-const funcMarcaProd = (e) => {
-  setMarcaProd(e.target.value);
-}
-console.log(marcaProd);
 
-//*************************** INPUT PRESENTACIÓN  ****************************** */
-const [presentaProd, setPresentaProd] = useState("");
 
-const funcPresentaProd = (e) => {
-  setPresentaProd(e.target.value);
-}
-console.log(presentaProd);
-//*************************** INPUT PRECIO  ****************************** */
-const [precioProd, setPrecioProd] = useState(null);
+//*****************  PRUEBA PARA CARGAR EL PRODUCTO INGRESADO**************** */
+  
 
-const funcPrecioProd = (e) => {
-  setPrecioProd(e.target.value);
-}
-console.log(precioProd);
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }
+
+  const [state, setState] = useState({
+    productName: '',
+    marca: '',
+    presentacion: '',
+    precio: 0
+  })
+
+  const { productName, marca, presentacion, precio } = state; 
+  // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
+  const handleInputChange = ({ target }) => {
+    setState({
+        ...state,
+        [target.name]: target.value
+    })
+};
+
+//*****************************  FUNCIÓN PARA ENVIAR LOS DATOS (BOTON) ******** */
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  (async () => {
+      // Se modifican las opciones del fetch, añadiendo los datos del formulario
+      options.body = JSON.stringify({ productName, marca, presentacion, precio })
+
+      const resp = await fetch('http://localhost:4000/producto', options)
+
+      // Si el ok es false, significa que se produjo un error en la petición
+      if (!resp.ok) alert('Revise las credenciales y vuelva a intentarlo');
+
+      const data = await resp.json()
+      
+      console.log(data);
+
+  })()
+};
 
 
   return (
@@ -46,7 +72,7 @@ console.log(precioProd);
         <div className="row p-4">
           <div className="col-lg-4">
             <main className="form-signin w-100 m-auto">
-              <form className="form-control">
+              <form onSubmit={handleSubmit} className="form-control">
                 {/* <img className="mb-4" src="" alt="" width={72} height={57} /> */}
                 {/* <h1 className="h3 mb-3 fw-normal">Inicio de Sesión</h1> */}
                 <label htmlFor="nombProd">
@@ -57,10 +83,10 @@ console.log(precioProd);
                     <input
                       type="text"
                       className="form-control"
-                      id="nombProd"
+                      name="productName"
                       placeholder="Nombre"
-                      value= {nombreProd}
-                      onChange = {funcnombreProd}
+                      value= {productName}
+                      onChange = {handleInputChange}
                     />
                     {/* <label htmlFor="nombProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
@@ -69,10 +95,10 @@ console.log(precioProd);
                     <input
                       type="text"
                       className="form-control"
-                      id="marcaProd"
+                      name="marca"
                       placeholder="Marca"
-                      value = {marcaProd}
-                      onChange = {funcMarcaProd} 
+                      value = {marca}
+                      onChange = {handleInputChange} 
                     />
                     {/* <label htmlFor="marcaProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
@@ -81,10 +107,10 @@ console.log(precioProd);
                     <input
                       type="text"
                       className="form-control"
-                      id="presenProd"
+                      name="presentacion"
                       placeholder="Presentación"
-                      value={presentaProd}
-                      onChange={funcPresentaProd}
+                      value={presentacion}
+                      onChange={handleInputChange}
                     />
                     {/* <label htmlFor="presenProd">Ingrese</label> */}
                   </div>
@@ -93,10 +119,10 @@ console.log(precioProd);
                     <input
                       type="number"
                       className="form-control"
-                      id="precioProd"
+                      name="precio"
                       placeholder="Precio"
-                      value={precioProd}
-                      onChange={funcPrecioProd}
+                      value={precio}
+                      onChange={handleInputChange}
                     />
                     {/* <label htmlFor="precioProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
@@ -109,11 +135,7 @@ console.log(precioProd);
                   Agregar a la lista
                 </button>
                 <hr />
-                <div className="mt-4">
-                  {/* <button type="button" className="w-90 btn btn-md btn-success mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Registrarse
-                </button> */}
-                  
+                <div className="mt-4">                  
                 </div>
 
                 {/* <NavLink className="nav-link active" aria-current="page" to='/todos'>Home</NavLink> */}
