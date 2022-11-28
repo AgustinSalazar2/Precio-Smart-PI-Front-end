@@ -6,6 +6,12 @@ export const BuscarProductos = () => {
   const [search, setSearch] = useState("");
 
 
+  const cuandoEscribeelUsuario = ({target}) => {
+    const palbraClave = target.value
+
+
+  }
+
   //funcion para extraer los datos de la API
   const URL = "http://localhost:4000/productos";
 

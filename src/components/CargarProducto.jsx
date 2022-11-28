@@ -5,6 +5,16 @@ import "../assets/signin.css";
 import { MisProductos } from "./MisProductos";
 
 export const CargarProducto = () => {
+  
+  const [tabla, setTabla] = useState(false)
+
+  useEffect(() => {
+    if (tabla) {
+      renderizarTabla()
+    } else {
+
+    }
+  })
 
   const options = {
     method: "POST",
@@ -23,10 +33,10 @@ export const CargarProducto = () => {
   const { productName, marca, presentacion, precio } = state;
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
-    setState({
+    setState([
       ...state,
-      [target.name]: target.value,
-    });
+     { [target.name]: target.value}
+    ]);
   };
 
   //*****************************  FUNCIÓN PARA ENVIAR LOS DATOS (BOTON) ******** */
