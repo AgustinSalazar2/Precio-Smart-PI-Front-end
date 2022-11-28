@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 
 import "../assets/signin.css";
 import img from "../assets/img/verificar.png";
@@ -6,8 +7,41 @@ import img from "../assets/img/verificar.png";
 export const CargarProducto = () => {
   //const { authDispatch } = useContext(AuthContext);
 
+//************************** INPUT NOMBRE  ******************************** */
+const [nombreProd, setNombreProd] = useState("");
+
+const funcnombreProd = (e) => {
+  setNombreProd(e.target.value);
+}
+console.log(nombreProd);
+//*************************** INPUT MARCA  ****************************** */
+
+const [marcaProd, setMarcaProd] = useState("");
+
+const funcMarcaProd = (e) => {
+  setMarcaProd(e.target.value);
+}
+console.log(marcaProd);
+
+//*************************** INPUT PRESENTACIÓN  ****************************** */
+const [presentaProd, setPresentaProd] = useState("");
+
+const funcPresentaProd = (e) => {
+  setPresentaProd(e.target.value);
+}
+console.log(presentaProd);
+//*************************** INPUT PRECIO  ****************************** */
+const [precioProd, setPrecioProd] = useState(null);
+
+const funcPrecioProd = (e) => {
+  setPrecioProd(e.target.value);
+}
+console.log(precioProd);
+
+
   return (
     <>
+    
       <div className="container p-4">
         <div className="row p-4">
           <div className="col-lg-4">
@@ -25,6 +59,8 @@ export const CargarProducto = () => {
                       className="form-control"
                       id="nombProd"
                       placeholder="Nombre"
+                      value= {nombreProd}
+                      onChange = {funcnombreProd}
                     />
                     {/* <label htmlFor="nombProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
@@ -35,6 +71,8 @@ export const CargarProducto = () => {
                       className="form-control"
                       id="marcaProd"
                       placeholder="Marca"
+                      value = {marcaProd}
+                      onChange = {funcMarcaProd} 
                     />
                     {/* <label htmlFor="marcaProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
@@ -45,6 +83,8 @@ export const CargarProducto = () => {
                       className="form-control"
                       id="presenProd"
                       placeholder="Presentación"
+                      value={presentaProd}
+                      onChange={funcPresentaProd}
                     />
                     {/* <label htmlFor="presenProd">Ingrese</label> */}
                   </div>
@@ -55,6 +95,8 @@ export const CargarProducto = () => {
                       className="form-control"
                       id="precioProd"
                       placeholder="Precio"
+                      value={precioProd}
+                      onChange={funcPrecioProd}
                     />
                     {/* <label htmlFor="precioProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
