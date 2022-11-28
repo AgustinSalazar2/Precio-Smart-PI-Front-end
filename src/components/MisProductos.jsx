@@ -6,19 +6,6 @@ export const MisProductos = () => {
   const URL = "http://localhost:4000/productos";
 
     //************************************/
-/*     axios.get('https://breakingbadapi.com/api/episodes')
-.then(resp =>{
-  const limit = 6;
-
-    this.setState({
-        // el cero representa desde donde quieres cortar el array.
-        // y la constante limit (int) sera el maximo dato a cortar
-        episodes: resp.data.slice(0, limit)
-    })
-}) */
-
-
-    //************************************** */
 
 
   const showData = async () => {
@@ -40,7 +27,10 @@ export const MisProductos = () => {
 
   return (
     <>
-      <div>
+      <div className="container">
+        <div className="row">
+        <div className="col-lg-12">
+        <h1 className="mt-3">LISTADO DE LOS PRODUCTOS DE SU COMERCIO</h1>
         <table className="table table-striped table-hover mt-5 shadow-lg table-control">
           <thead>
             <tr>
@@ -62,6 +52,8 @@ export const MisProductos = () => {
             ))}
           </tbody>
         </table>
+      </div>
+        </div>
       </div>
     </>
   );

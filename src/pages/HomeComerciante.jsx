@@ -10,7 +10,8 @@ export const HomeComerciante = () => {
     <>
         <NavBar />
         <Routes>
-          <Route path='/*' element={ <MisProductos /> }/>
+          <Route path='/*' element={ <CargarComercio /> }/>
+          <Route path='/productos' element={ <MisProductos /> }/>
           <Route path='/add-prod' element={ <CargarProducto /> }/>
         </Routes>
     </>
