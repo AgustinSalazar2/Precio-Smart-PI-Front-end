@@ -141,12 +141,10 @@ export const CargarProducto = () => {
             </div>
 
             {/* ********************* DIV DE ABAJO ******************************* */}
-            <div class="text-bg-info p-3">
+            <div className="text-bg-info p-3">
               
-                
                 <MisProductos />
 
-              
             </div>
           </div>
         </div>

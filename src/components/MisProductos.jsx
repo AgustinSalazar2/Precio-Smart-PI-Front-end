@@ -5,8 +5,26 @@ export const MisProductos = () => {
 
   const URL = "http://localhost:4000/productos";
 
+    //************************************/
+/*     axios.get('https://breakingbadapi.com/api/episodes')
+.then(resp =>{
+  const limit = 6;
+
+    this.setState({
+        // el cero representa desde donde quieres cortar el array.
+        // y la constante limit (int) sera el maximo dato a cortar
+        episodes: resp.data.slice(0, limit)
+    })
+}) */
+
+
+    //************************************** */
+
+
   const showData = async () => {
+
     const response = await fetch(URL);
+
     const data = await response.json();
     // console.log(data);
     setProducts(data);
@@ -16,6 +34,9 @@ export const MisProductos = () => {
   useEffect(() => {
     showData();
   }, []);
+
+    const ultimosDiez = products.slice(-10)
+    // console.log(ultimosDiez)
 
   return (
     <>
@@ -31,7 +52,7 @@ export const MisProductos = () => {
           </thead>
 
           <tbody>
-            {products.map((prod) => (
+            {ultimosDiez.map((prod) => (
               <tr key={prod._id}>
                 <td>{prod.productName}</td>
                 <td>{prod.marca}</td>
