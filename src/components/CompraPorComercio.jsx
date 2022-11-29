@@ -19,10 +19,12 @@ export const CompraPorComercio = () => {
     // console.log(e.target.value);
     const categoria = e.target.value
     console.log(categoria)
+
     if (categoria==="Categoría") {
       console.error("Seleccione una categoria plis")
       return
     }
+    
     const URL = `http://localhost:4000/products/${categoria}`
     const resp =  await fetch(URL);
     const dataCategoria = await resp.json();
