@@ -21,10 +21,20 @@ export const BuscarProductos = () => {
     // console.log(data);
     setProducts(data)
   }
+
+  const filtredData = async (e)=> {
+    // console.log(e.target.value);
+    const categoria = e.target.value
+    const URL = `http://localhost:4000/productos/${categoria}`
+    const resp =  await fetch(URL);
+    const dataCategoria = await resp.json();
+    setProducts(dataCategoria)
+  }
   
   //Funcion de busqueda
   const buscador = (e) => {
     setSearch(e.target.value);
+
   }
   
   // //Metodo de filtrado comun:
@@ -78,10 +88,11 @@ export const BuscarProductos = () => {
                 {/* <label htmlFor="" class="form-label">
                   Zona
                 </label> */}
-                <select className="form-select form-select" name="" id="">
+                <select className="form-select form-select" onChange={filtredData}>
 
                   {/* <option defaultValue>Categoría</option> */}
-                  <option defaultValue value="">Comestibles</option>
+                  <option defaultValue value="">Categoría</option>
+                  <option value="comestibles">Comestibles</option>
                   <option value="bebidas">Bebidas</option>
                   <option value="limpieza">Limpieza</option>
                   <option value="otros">Otros</option>
