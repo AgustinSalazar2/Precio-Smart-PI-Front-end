@@ -25,9 +25,11 @@ export const BuscarProductos = () => {
   const filtredData = async (e)=> {
     // console.log(e.target.value);
     const categoria = e.target.value
-    const URL = `http://localhost:4000/productos/${categoria}`
+    console.log(categoria)
+    const URL = `http://localhost:4000/products/${categoria}`
     const resp =  await fetch(URL);
     const dataCategoria = await resp.json();
+    console.log(dataCategoria);
     setProducts(dataCategoria)
   }
   
