@@ -49,8 +49,25 @@ export const CargarComercio = () => {
       if (!resp.ok) alert("Revise las credenciales y vuelva a intentarlo");
 
       const data = await resp.json();
-        console.log(data);
-        localStorage.setItem("comercio", JSON.stringify(data.comerce));
+        // console.log(data);
+      if (data) {
+        //Se trae del localstorage los datos del usuario y se guarda en la constante usuario
+        const usuario = JSON.parse(localStorage.getItem('user'))
+        
+        //Se instancia un nuevo objeto con los datos del usuario y se agrega los datos del comercio
+        const user = {
+          token: usuario.token,
+          username: usuario.username,
+          email: usuario.email,
+          isLogged: true,
+          rol: usuario.rol,
+          comercio: data.comerce,
+        };
+
+        //Se setean los datos del usuario en el local storage
+        localStorage.setItem("user", JSON.stringify(user));
+
+      }
       
     })();
   };

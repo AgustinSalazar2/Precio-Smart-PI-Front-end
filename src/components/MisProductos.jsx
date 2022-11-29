@@ -22,7 +22,7 @@ export const MisProductos = () => {
     showData();
   }, []);
 
-    const ultimosDiez = products.slice(-10)
+    // const ultimosDiez = products.slice(-10)
     // console.log(ultimosDiez)
 
   return (
@@ -42,7 +42,7 @@ export const MisProductos = () => {
           </thead>
 
           <tbody>
-            {ultimosDiez.map((prod) => (
+            {products.map((prod) => (
               <tr key={prod._id}>
                 <td>{prod.productName}</td>
                 <td>{prod.marca}</td>
