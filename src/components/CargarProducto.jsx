@@ -5,17 +5,6 @@ import "../assets/signin.css";
 import { MisProductos } from "./MisProductos";
 
 export const CargarProducto = () => {
-  
-  const [tabla, setTabla] = useState(false)
-
-  useEffect(() => {
-    if (tabla) {
-      renderizarTabla()
-    } else {
-
-    }
-  })
-
   const options = {
     method: "POST",
     headers: {
@@ -24,33 +13,38 @@ export const CargarProducto = () => {
   };
 
   const [state, setState] = useState({
+    categoria: "",
     productName: "",
     marca: "",
     presentacion: "",
     precio: 0,
   });
 
-  const { productName, marca, presentacion, precio } = state;
+  const { categoria, productName, marca, presentacion, precio } = state;
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
-    setState([
+    setState({
       ...state,
-     { [target.name]: target.value}
-    ]);
+      [target.name]: target.value,
+    });
   };
 
   //*****************************  FUNCIÓN PARA ENVIAR LOS DATOS (BOTON) ******** */
 
+  const usuarioComercio = JSON.parse(localStorage.getItem("user"));
+  const comercioId = usuarioComercio.comercio._id;
   const handleSubmit = (e) => {
     e.preventDefault();
 
     (async () => {
       // Se modifican las opciones del fetch, añadiendo los datos del formulario
       options.body = JSON.stringify({
+        categoria,
         productName,
         marca,
         presentacion,
         precio,
+        idComercio: comercioId,
       });
 
       const resp = await fetch("http://localhost:4000/producto", options);
@@ -59,11 +53,9 @@ export const CargarProducto = () => {
       if (!resp.ok) alert("Revise las credenciales y vuelva a intentarlo");
 
       const data = await resp.json();
-        console.log(data);
-      
+      console.log(data);
     })();
   };
-
 
   return (
     <>
@@ -74,10 +66,28 @@ export const CargarProducto = () => {
               <form onSubmit={handleSubmit} className="form-control mt-5">
                 {/* <img className="mb-4" src="" alt="" width={72} height={57} /> */}
                 {/* <h1 className="h3 mb-3 fw-normal">Inicio de Sesión</h1> */}
-                <label htmlFor="nombProd">
+
+                <label htmlFor="nombProd" className="mb-1">
                   <strong>INGRESE LOS DATOS DE SUS PRODUCTOS</strong>
                 </label>
-                <div className="form-floating mb-2 mt-5">
+
+                <div className="form-floating mb-2 mt-3">
+                  <div className="form mb-2">
+                    <select
+                      className="form-select"
+                      onChange={handleInputChange}
+                      name="categoria"
+                    >
+                      <option disabled>
+                        Seleccione una categoría
+                      </option>
+                      <option value="comestibles">Comestibles</option>
+                      <option value="bebidas">Bebidas</option>
+                      <option value="limpieza">Limpieza</option>
+                      <option value="otros">Otros</option>
+                    </select>
+                  </div>
+
                   <div className="form mb-2">
                     <input
                       type="text"
@@ -115,6 +125,9 @@ export const CargarProducto = () => {
                   </div>
 
                   <div className="form mb-4">
+                    <label htmlFor="nombPrecio" className="mb-1">
+                      Ingrese el precio
+                    </label>
                     <input
                       type="number"
                       className="form-control"
@@ -152,9 +165,7 @@ export const CargarProducto = () => {
 
             {/* ********************* DIV DE ABAJO ******************************* */}
             <div className="text-bg-info p-3">
-              
-                <MisProductos />
-
+              <MisProductos />
             </div>
           </div>
         </div>
