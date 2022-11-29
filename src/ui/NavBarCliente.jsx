@@ -33,6 +33,9 @@ export const NavBarCliente = () => {
               <li className="nav-item">
                 <NavLink className="nav-link active" to='/add-prod'>Cargar Productos</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link active" to='/cart'>Compra por Comercio</NavLink>
+              </li>
             </ul>
 
             <li className="nav-item ms-auto">
