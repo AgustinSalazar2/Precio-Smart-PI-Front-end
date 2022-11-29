@@ -21,6 +21,7 @@ export const CargarProducto = () => {
   });
 
   const { categoria, productName, marca, presentacion, precio } = state;
+  
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
     setState({
@@ -33,6 +34,7 @@ export const CargarProducto = () => {
 
   const usuarioComercio = JSON.parse(localStorage.getItem("user"));
   const comercioId = usuarioComercio.comercio._id;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,6 +48,11 @@ export const CargarProducto = () => {
         precio,
         idComercio: comercioId,
       });
+
+      if (categoria==="Seleccione una categoría") {
+        console.error("Seleccione una categoria plis")
+        return
+      }
 
       const resp = await fetch("http://localhost:4000/producto", options);
 
@@ -78,7 +85,7 @@ export const CargarProducto = () => {
                       onChange={handleInputChange}
                       name="categoria"
                     >
-                      <option disabled>
+                      <option>
                         Seleccione una categoría
                       </option>
                       <option value="comestibles">Comestibles</option>
@@ -155,11 +162,12 @@ export const CargarProducto = () => {
             </main>
           </div>
 
-          <div className="col-lg-8 p-1 mt-3">
+          <div className="col-lg-8 p-1 mt-1">
             <div>
-              <h3 className="mt-5">
-                <strong>PrecioSmart Bienvenido estimado COMERCIANTE</strong>
-              </h3>
+              <h2 className="mt-5">
+                <strong>PRECIO SMART<br/></strong>
+              </h2>
+              <h3><strong>Bienvenido estimado COMERCIANTE</strong> </h3>
               {/* <img className="mb-4" src={img} alt="" width={80} height={75} /> */}
             </div>
 

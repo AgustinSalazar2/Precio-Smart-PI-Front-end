@@ -13,7 +13,7 @@ export const MisProductos = () => {
     const response = await fetch(URL);
 
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     setProducts(data);
   };
 
@@ -30,7 +30,7 @@ export const MisProductos = () => {
       <div className="container">
         <div className="row">
         <div className="col-lg-12">
-        <h1 className="mt-3">LISTADO DE LOS PRODUCTOS DE SU COMERCIO</h1>
+        <h1 className="mt-3">LISTADO DE PRODUCTOS</h1>
         <table className="table table-striped table-hover mt-5 shadow-lg table-control">
           <thead>
             <tr>
@@ -38,6 +38,7 @@ export const MisProductos = () => {
               <th>Marca</th>
               <th>Presentación</th>
               <th>Precio</th>
+              <th>Comercio</th>
             </tr>
           </thead>
 
@@ -48,6 +49,7 @@ export const MisProductos = () => {
                 <td>{prod.marca}</td>
                 <td>{prod.presentacion}</td>
                 <td>${prod.precio}</td>
+                <td>{prod.idComercio.commerceName}</td>
               </tr>
             ))}
           </tbody>

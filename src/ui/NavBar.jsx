@@ -45,7 +45,7 @@ export const NavBar = () => {
                 aria-current="page"
                 to="/productos"
               >
-                Mis Productos
+                Productos del Mercado
               </NavLink>
             </li>
 
