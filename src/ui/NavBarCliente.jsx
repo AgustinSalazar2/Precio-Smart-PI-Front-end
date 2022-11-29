@@ -26,9 +26,9 @@ export const NavBarCliente = () => {
                 <NavLink className="nav-link active" aria-current="page" to='/'>Buscar Poductos</NavLink>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link active" aria-current="page" to='#'>|</a>
-              </li>
+              </li> */}
 
               <li className="nav-item">
                 <NavLink className="nav-link active" to='/add-prod'>Cargar Productos</NavLink>

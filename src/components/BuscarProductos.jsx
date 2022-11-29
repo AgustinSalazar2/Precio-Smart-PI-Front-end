@@ -97,7 +97,7 @@ export const BuscarProductos = () => {
                 type="text"
                 placeholder="search"
                 className="form-control mb-3"
-                autoFocus="true"
+                autoFocus={true}
               />
 
             </div>
@@ -114,6 +114,7 @@ export const BuscarProductos = () => {
                 <th>Marca</th>
                 <th>Presentación</th>
                 <th>Precio</th>
+                <th>Comercio</th>
               </tr>
             ) : (
               <tr></tr>
@@ -127,6 +128,7 @@ export const BuscarProductos = () => {
                 <td>{prod.marca}</td>
                 <td>{prod.presentacion}</td>
                 <td>${prod.precio}</td>
+                <td>{prod.idComercio.commerceName}</td>
               </tr>
             ))}
           </tbody>

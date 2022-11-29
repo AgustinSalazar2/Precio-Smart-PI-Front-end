@@ -77,7 +77,7 @@ export const Login = () => {
     
     (async () => {
       // Se modifican las opciones del fetch, añadiendo los datos del formulario
-      options.body = JSON.stringify({ username, password, email, rol });
+      options.body = JSON.stringify({ username, password, email, rol:"cliente" });
 
       const resp = await fetch("http://localhost:4000/user", options);
 
@@ -88,7 +88,9 @@ export const Login = () => {
       console.log(data);
 
       //*Una vez creado el usuario, se realiza el inicio de sesión.
-      handleSubmit(e)
+      if (data.user) {
+        handleSubmit(e)
+      }
       
     })();
   };
