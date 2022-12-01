@@ -258,13 +258,13 @@ export const CargarProducto = () => {
             </div>
 
             {/* ********************* DIV DE ABAJO ******************************* */}
-            <div className="text-bg-info p-3">
+            <div className="text-bg-info p-3 rounded-3">
               {/* <MisProductos /> */}
-              <div className="container">
+              <div className="container ">
                 <div className="row">
-                  <div className="col-lg-12">
-                    <h1 className="mt-3">LISTADO DE PRODUCTOS</h1>
-                    <table className="table table-striped table-hover mt-5 shadow-lg table-control">
+                  <div className="col-lg-12 ">
+                    <h1 className="mt-1">PRODUCTOS</h1>
+                    <table className="table table-striped table-hover mt-3 shadow-lg table-control rounded-3">
                       <thead>
                         <tr>
                           <th>Nombre</th>
@@ -289,10 +289,10 @@ export const CargarProducto = () => {
                             <td>{prod.idComercio.commerceName}</td>
                             <td>
                               {/* {console.log(prod)} */}
-                              <button onClick={() => editar(prod._id)}>
+                              <button className="btn btn-success mx-1" onClick={() => editar(prod._id)}>
                                 Editar
                               </button>
-                              <button onClick={() => eliminar(prod._id)}>
+                              <button className="btn btn-danger mx-1" onClick={() => eliminar(prod._id)}>
                                 Eliminar
                               </button>
                             </td>
