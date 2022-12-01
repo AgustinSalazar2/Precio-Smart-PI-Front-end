@@ -48,7 +48,7 @@ export const BuscarProductos = () => {
   // }
 
   //Filtrado mas resumido
-  const results = !search ? [] : products.filter((dato)=> dato.productName.toLowerCase().includes(search.toLocaleLowerCase()))
+  const results = !search ? products : products.filter((dato)=> dato.productName.toLowerCase().includes(search.toLocaleLowerCase()))
 
   
   //Hook useEfect
