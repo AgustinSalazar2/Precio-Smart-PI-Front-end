@@ -167,8 +167,8 @@ export const Login = () => {
         </div>
       </div>
 
+{/*//! ##################### MODAL DE REGISTRO ##########################################################*/}
       <div>
-        {/* Modal Registro*/}
         <div
           className="modal fade"
           id="exampleModal"

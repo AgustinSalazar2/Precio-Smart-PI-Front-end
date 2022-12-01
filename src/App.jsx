@@ -1,8 +1,10 @@
-import { AuthContext } from './context/AuthContext'
-import { AppRouter } from './routers/AppRouter'
-import './App.css'
 import { useReducer } from 'react'
+import { AuthContext } from './context/AuthContext'
+import { CartContext } from './context/CartContext'
+import { AppRouter } from './routers/AppRouter'
 import { authReducer } from './reducers/authReducer'
+import { cartReducer } from './reducers/cartReducer'
+import './App.css'
 
 const init = ()=>{
   return JSON.parse(localStorage.getItem('user')) || { isLogged: false }
@@ -10,14 +12,20 @@ const init = ()=>{
 
 function App() {
 
-  const [ user, authDispatch ] = useReducer(authReducer, [], init)
+  const [ user, authDispatch ] = useReducer( authReducer, [], init )
+  const [cart, cartDispatch] = useReducer( cartReducer, [], init )
 
   return (
     <AuthContext.Provider value={{
       user,
       authDispatch
     }}>
-      <AppRouter />
+      <CartContext.Provider value {{
+
+      }}>
+        <AppRouter />
+
+      </CartContext.Provider>
     </AuthContext.Provider>
   )
 }
