@@ -20,12 +20,8 @@ function App() {
       user,
       authDispatch
     }}>
-      <CartContext.Provider value {{
-
-      }}>
         <AppRouter />
 
-      </CartContext.Provider>
     </AuthContext.Provider>
   )
 }

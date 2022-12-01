@@ -33,7 +33,7 @@ export function cartReducer(state, action) {
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
                     })
-                } 
+                }
                 : {
                     ...state, 
                     cart: [ ...state.cart, { ...newItem, quantity: 1 } ]
@@ -50,7 +50,7 @@ export function cartReducer(state, action) {
         }
         case TYPES.CLEAR_CART : {
             return {
-               ...initialState
+                ...cartInitialState
             }
         }
         default: {
