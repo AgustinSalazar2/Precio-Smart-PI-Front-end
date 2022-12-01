@@ -22,7 +22,7 @@ export const CargarProducto = () => {
   });
 
   const { categoria, productName, marca, presentacion, precio } = state;
-  
+
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
     setState({
@@ -50,9 +50,9 @@ export const CargarProducto = () => {
         idComercio: comercioId,
       });
 
-      if (categoria==="Seleccione una categoría") {
-        console.error("Seleccione una categoria plis")
-        return
+      if (categoria === "Seleccione una categoría") {
+        console.error("Seleccione una categoria plis");
+        return;
       }
 
       const resp = await fetch("http://localhost:4000/producto", options);
@@ -64,6 +64,93 @@ export const CargarProducto = () => {
       console.log(data);
     })();
   };
+
+  // *******************  Renderizado de productos propios ***********************
+  const [products, setProducts] = useState([]);
+
+  const URL = "http://localhost:4000/productos";
+
+  //************************************/
+
+  const showData = async () => {
+    const response = await fetch(URL);
+
+    const data = await response.json();
+    // console.log(data);
+    setProducts(data);
+  };
+
+  //Hook useEfect
+  useEffect(() => {
+    showData();
+  }, []);
+
+  // ***********************   filtrado   ****************************
+  const usuario = JSON.parse(localStorage.getItem("user"));
+  // console.log(usuario);
+  const productosDelComercio = products.filter(
+    (producto) => producto.idComercio._id === usuario.comercio._id
+  );
+  // ********************  Función para eliminar sus productos  ***************
+  const eliminar = async (id) => {
+    console.log(id);
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const url = `http://localhost:4000/productos/${id}`;
+    const resp = await fetch(url, options);
+  };
+
+  // *********************   FUNCIÓN EDITAR  ***********************************
+  // const editar = async (id) => {
+
+  //   const selectProduct = products.filter(product => product._id === id )
+  //   console.log(selectProduct)
+  //   setState({
+  //     categoria: selectProduct.categoria,
+  //     productName: selectProduct.productName,
+  //     marca: selectProduct.marca,
+  //     presentacion: selectProduct.presentacion,
+  //     precio: selectProduct.precio,
+  //   })
+  //   const options = {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+
+  // };
+
+    
+
+    /* 
+             <td>{prod.productName}</td>
+                    <td>{prod.marca}</td>
+                    <td>{prod.presentacion}</td>
+                    <td>${prod.precio}</td>
+                    <td>{prod.idComercio.commerceName}</td>
+    */
+
+    // const url = `http://localhost:4000/producto/${id}`;
+    // const resp = await fetch(url);
+    // const data = resp.json();
+    // console.log(data)
+
+    // options.body = {
+    //     categoria: prod.categoria.value,
+    //     productName: prod.productName,
+    //     marca: prod.marca,
+    //     presentacion: prod.presentacion,
+    //     precio: prod.precio,
+    //     idComercio:prod.idComercio
+    // }
+    
+    // console.log(data);
+  
 
   return (
     <>
@@ -86,9 +173,7 @@ export const CargarProducto = () => {
                       onChange={handleInputChange}
                       name="categoria"
                     >
-                      <option>
-                        Seleccione una categoría
-                      </option>
+                      <option>Seleccione una categoría</option>
                       <option value="comestibles">Comestibles</option>
                       <option value="bebidas">Bebidas</option>
                       <option value="limpieza">Limpieza</option>
@@ -166,15 +251,63 @@ export const CargarProducto = () => {
           <div className="col-lg-8 p-1 mt-1">
             <div>
               <h2 className="mt-5">
-                <strong>PRECIO SMART<br/></strong>
+                <strong>
+                  PRECIO SMART
+                  <br />
+                </strong>
               </h2>
-              <h3><strong>Bienvenido estimado COMERCIANTE</strong> </h3>
+              <h3>
+                <strong>Bienvenido estimado COMERCIANTE</strong>{" "}
+              </h3>
               {/* <img className="mb-4" src={img} alt="" width={80} height={75} /> */}
             </div>
 
             {/* ********************* DIV DE ABAJO ******************************* */}
             <div className="text-bg-info p-3">
-              <MisProductos />
+              {/* <MisProductos /> */}
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <h1 className="mt-3">LISTADO DE PRODUCTOS</h1>
+                    <table className="table table-striped table-hover mt-5 shadow-lg table-control">
+                      <thead>
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Marca</th>
+                          <th>Presentación</th>
+                          <th>Precio</th>
+                          <th>Comercio</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {/* {if(prod.idComercio===_id){
+
+            }} */}
+                        {productosDelComercio.map((prod) => (
+                          <tr key={prod._id}>
+                            <td>{prod.productName}</td>
+                            <td>{prod.marca}</td>
+                            <td>{prod.presentacion}</td>
+                            <td>${prod.precio}</td>
+                            <td>{prod.idComercio.commerceName}</td>
+                            <td>
+                              {/* {console.log(prod)} */}
+                              <button onClick={() => editar(prod._id)}>
+                                Editar
+                              </button>
+                              <button onClick={() => eliminar(prod._id)}>
+                                Eliminar
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
