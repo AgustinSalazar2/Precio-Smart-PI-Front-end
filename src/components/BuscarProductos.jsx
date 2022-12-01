@@ -25,11 +25,14 @@ export const BuscarProductos = () => {
   const filtredData = async (e)=> {
     // console.log(e.target.value);
     const categoria = e.target.value
-    console.log(categoria)
+    if(categoria === 'todos'){
+      showData()
+    }
+    // console.log(categoria)
     const URL = `http://localhost:4000/products/${categoria}`
     const resp =  await fetch(URL);
     const dataCategoria = await resp.json();
-    console.log(dataCategoria);
+    // console.log(dataCategoria);
     setProducts(dataCategoria)
   }
   
@@ -94,6 +97,7 @@ export const BuscarProductos = () => {
 
                   {/* <option defaultValue>Categoría</option> */}
                   <option defaultValue value="">Categoría</option>
+                  <option value="todos">Todos</option>
                   <option value="comestibles">Comestibles</option>
                   <option value="bebidas">Bebidas</option>
                   <option value="limpieza">Limpieza</option>
