@@ -15,10 +15,9 @@ export const NavBarCliente = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between align-items-center">
         <div className="container-fluid">
-          {/* <NavLink className="navbar-brand" to="/">Navbar</NavLink> */}
-          {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
-          </button> */}
+          </button>
           <img className="mb-2 me-3 " src={img} alt="Logo de la Aplicación Precios Smart" width={50} height={50} />
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -27,9 +26,9 @@ export const NavBarCliente = () => {
                 <NavLink className="nav-link active" aria-current="page" to='/'>Buscar Poductos</NavLink>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link active" aria-current="page" to='#'>|</a>
-              </li>
+              </li> */}
 
               <li className="nav-item">
                 <NavLink className="nav-link active" to='/add-prod'>Cargar Productos</NavLink>

@@ -21,10 +21,22 @@ export const BuscarProductos = () => {
     // console.log(data);
     setProducts(data)
   }
+
+  const filtredData = async (e)=> {
+    // console.log(e.target.value);
+    const categoria = e.target.value
+    console.log(categoria)
+    const URL = `http://localhost:4000/products/${categoria}`
+    const resp =  await fetch(URL);
+    const dataCategoria = await resp.json();
+    console.log(dataCategoria);
+    setProducts(dataCategoria)
+  }
   
   //Funcion de busqueda
   const buscador = (e) => {
     setSearch(e.target.value);
+
   }
   
   // //Metodo de filtrado comun:
@@ -78,10 +90,11 @@ export const BuscarProductos = () => {
                 {/* <label htmlFor="" class="form-label">
                   Zona
                 </label> */}
-                <select className="form-select form-select" name="" id="">
+                <select className="form-select form-select" onChange={filtredData}>
 
                   {/* <option defaultValue>Categoría</option> */}
-                  <option defaultValue value="">Comestibles</option>
+                  <option defaultValue value="">Categoría</option>
+                  <option value="comestibles">Comestibles</option>
                   <option value="bebidas">Bebidas</option>
                   <option value="limpieza">Limpieza</option>
                   <option value="otros">Otros</option>
@@ -97,7 +110,7 @@ export const BuscarProductos = () => {
                 type="text"
                 placeholder="search"
                 className="form-control mb-3"
-                autoFocus="true"
+                autoFocus={true}
               />
 
             </div>
@@ -114,6 +127,7 @@ export const BuscarProductos = () => {
                 <th>Marca</th>
                 <th>Presentación</th>
                 <th>Precio</th>
+                <th>Comercio</th>
               </tr>
             ) : (
               <tr></tr>
@@ -127,6 +141,7 @@ export const BuscarProductos = () => {
                 <td>{prod.marca}</td>
                 <td>{prod.presentacion}</td>
                 <td>${prod.precio}</td>
+                <td>{prod.idComercio.commerceName}</td>
               </tr>
             ))}
           </tbody>
