@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import "../assets/signin.css";
-import { MisProductos } from "./MisProductos";
-// import img from "../assets/img/verificar.png";
-import { Productos } from "./Productos";
-
 export const CargarProducto = () => {
   const options = {
     method: "POST",
