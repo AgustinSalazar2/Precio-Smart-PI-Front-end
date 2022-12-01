@@ -15,7 +15,14 @@ export const cartReducer = (state, action) => {
                 cart: []
             }
         }
-        
+        case TYPES.DELETE_ALL_FROM_CART:{
+
+        }
+
+        case TYPES.DELETE_ONE_FROM_CART:{
+            
+        }
+
         default:
             return state
     }

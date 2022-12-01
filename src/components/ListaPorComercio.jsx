@@ -41,6 +41,11 @@ export const ListaPorComercio = () => {
   const clearCart = () => {
     cartDispatch({type: TYPES.CLEAR_CART})
   }
+
+  const deleteAllFromCart = (id) => {
+
+  }
+
   return (
     <>
       <div className="container">
@@ -59,12 +64,11 @@ export const ListaPorComercio = () => {
           <div className="col col-lg-4">
             <h2>Carrito de compras</h2>
             <article>
-            <button type="button" className="btn btn-danger" onClick={clearCart}>Limpiar carrito</button>
+              <button type="button" className="btn btn-danger" onClick={clearCart}>Limpiar carrito</button>
 
-              {
-                cart.map((product, i)=>(<CartItems key={i} data={product} />))
-              }
-              
+                {
+                  cart.map((product, i)=>(<CartItems key={i} data={product} />))
+                }
             </article>
           </div>
         </div>
