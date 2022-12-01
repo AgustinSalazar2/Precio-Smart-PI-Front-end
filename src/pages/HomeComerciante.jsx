@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { CargarComercio } from '../components/CargarComercio'
 import { CargarProducto } from '../components/CargarProducto'
-import { MisProductos } from '../components/MisProductos'
+import { Productos } from '../components/Productos'
 import { NavBar } from '../ui/NavBar'
 
 export const HomeComerciante = () => {
@@ -11,7 +11,7 @@ export const HomeComerciante = () => {
         <NavBar />
         <Routes>
           <Route path='/*' element={ <CargarComercio /> }/>
-          <Route path='/productos' element={ <MisProductos /> }/>
+          <Route path='/productos' element={ <Productos /> }/>
           <Route path='/add-prod' element={ <CargarProducto /> }/>
         </Routes>
     </>
