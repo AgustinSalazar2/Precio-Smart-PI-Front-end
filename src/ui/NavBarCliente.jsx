@@ -31,7 +31,7 @@ export const NavBarCliente = () => {
               </li> */}
 
               <li className="nav-item">
-                <NavLink className="nav-link active" to='/add-prod'>Cargar Productos</NavLink>
+                <NavLink className="nav-link active" to='/list-prod'>Elegir lista de Productos</NavLink>
               </li>
             </ul>
 
