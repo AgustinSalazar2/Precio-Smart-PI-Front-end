@@ -3,7 +3,7 @@ import React from 'react'
 export const CartItems = ({data, delFromData}) => {
   let { id, productName, marca, precio, cantidad } = data
   return (
-    <div>
+    <div className='mb-3'>
       <div className="card">
         <div className="card-body">
           <h3>{productName}</h3>

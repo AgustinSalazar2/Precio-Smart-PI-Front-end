@@ -121,7 +121,7 @@ export const ListaPorComercio = () => {
                       <span>$$</span>
                     </p>
                   </div>
-                  <div className="col-4">
+                  <div className="col-4 mb-2">
                     <button type="button" className="btn btn-danger" onClick={clearCart}>
                       Limpiar carrito
                     </button>
@@ -129,10 +129,12 @@ export const ListaPorComercio = () => {
                 </div>
 
               </div>
+              
+              {
+                cart.map((product, i)=>(<CartItems key={i} data={product}/>))
+              }
+              
 
-                {
-                  cart.map((product, i)=>(<CartItems key={i} data={product} />))
-                }
             </article>
           </div>
         </div>
