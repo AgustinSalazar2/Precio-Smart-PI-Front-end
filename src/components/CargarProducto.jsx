@@ -14,9 +14,11 @@ export const CargarProducto = () => {
     marca: "",
     presentacion: "",
     precio: 0,
+    idProducto: null,
   });
 
-  const { categoria, productName, marca, presentacion, precio } = state;
+  const { categoria, productName, marca, presentacion, precio, idProducto } =
+    state;
 
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
@@ -33,6 +35,8 @@ export const CargarProducto = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log('Agregando...');
+    // return
 
     (async () => {
       // Se modifican las opciones del fetch, añadiendo los datos del formulario
@@ -97,66 +101,106 @@ export const CargarProducto = () => {
     };
     const url = `http://localhost:4000/productos/${id}`;
     const resp = await fetch(url, options);
+    if (resp.ok) {
+      showData();
+    }
   };
 
   // *********************   FUNCIÓN EDITAR  ***********************************
-  // const editar = async (id) => {
+  const [formulario, setform] = useState({
+    formAdd: true,
+  });
 
-  //   const selectProduct = products.filter(product => product._id === id )
-  //   console.log(selectProduct)
-  //   setState({
-  //     categoria: selectProduct.categoria,
-  //     productName: selectProduct.productName,
-  //     marca: selectProduct.marca,
-  //     presentacion: selectProduct.presentacion,
-  //     precio: selectProduct.precio,
-  //   })
-  //   const options = {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
+  const formEditar = () => {
+    setform({
+      formAdd: false,
+    });
+  };
 
-  // };
+  const formAgregar = () => {
+    setform({
+      formAdd: true,
+    });
+    setState({
+      categoria: "",
+      productName: "",
+      marca: "",
+      presentacion: "",
+      precio: 0,
+    });
+  };
 
-  /* 
-             <td>{prod.productName}</td>
-                    <td>{prod.marca}</td>
-                    <td>{prod.presentacion}</td>
-                    <td>${prod.precio}</td>
-                    <td>{prod.idComercio.commerceName}</td>
-    */
+  const editar = async (producto) => {
+    formEditar();
+    setState({
+      categoria: producto.categoria,
+      productName: producto.productName,
+      marca: producto.marca,
+      presentacion: producto.presentacion,
+      precio: producto.precio,
+      idProducto: producto._id,
+    });
+  };
 
-  // const url = `http://localhost:4000/producto/${id}`;
-  // const resp = await fetch(url);
-  // const data = resp.json();
-  // console.log(data)
+  const submitEditar = (e) => {
+    e.preventDefault();
+    // console.log('Editando...');
+    // return
 
-  // options.body = {
-  //     categoria: prod.categoria.value,
-  //     productName: prod.productName,
-  //     marca: prod.marca,
-  //     presentacion: prod.presentacion,
-  //     precio: prod.precio,
-  //     idComercio:prod.idComercio
-  // }
+    (async () => {
+      options.method = "PUT";
+      options.body = JSON.stringify({
+        categoria,
+        productName,
+        marca,
+        presentacion,
+        precio,
+      });
 
-  // console.log(data);
+      const id = idProducto;
+      const urlPut = `http://localhost:4000/productos/${id}`;
+
+      const resp = await fetch(urlPut, options);
+      // Si el ok es false, significa que se produjo un error en la petición
+      if (!resp.ok) alert("Revise los datos y vuelva a intentarlo");
+
+      const data = await resp.json();
+      // console.log(data);
+      if (resp.ok) {
+        showData();
+        setState({
+          categoria: "",
+          productName: "",
+          marca: "",
+          presentacion: "",
+          precio: 0,
+        });
+      }
+
+    })();
+  };
+
+  // console.log(state)
+  // console.log(formulario)
 
   return (
     <>
-      <div className="container p-4">
-        <div className="row p-4">
-          <div className="col-lg-4">
+      <div className="container p-3">
+        <div className="row">
+          <div className="col col-lg-3">
             <main className="form-signin w-100 m-auto">
-              <form onSubmit={handleSubmit} className="form-control mt-5">
-                {/* <img className="mb-4" src="" alt="" width={72} height={57} /> */}
-                {/* <h1 className="h3 mb-3 fw-normal">Inicio de Sesión</h1> */}
+              
+              <form onSubmit={formulario.formAdd ? handleSubmit : submitEditar} className="form-control mt-5">
 
-                <label htmlFor="nombProd" className="mb-1">
-                  <strong>INGRESE LOS DATOS DE SUS PRODUCTOS</strong>
-                </label>
+                {formulario.formAdd ? (
+                  <label htmlFor="nombProd" className="mb-1">
+                    <strong>INGRESE LOS DATOS DE SUS PRODUCTOS</strong>
+                  </label>
+                ) : (
+                  <label htmlFor="nombProd" className="mb-1">
+                    <strong>MODIFIQUE LOS DATOS DE SU PRODUCTO</strong>
+                  </label>
+                )}
 
                 <div className="form-floating mb-2 mt-3">
                   <div className="form mb-2">
@@ -224,15 +268,32 @@ export const CargarProducto = () => {
                     {/* <label htmlFor="precioProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
                 </div>
-
-                <button
-                  className="w-50 btn btn-md btn-primary mb-2"
-                  type="submit"
-                >
-                  Agregar a la lista
-                </button>
+                {formulario.formAdd ? (
+                  <button
+                    className="w-100 btn btn-md btn-primary mb-2"
+                    type="submit"
+                  >
+                    Agregar
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      className="w-50 btn btn-sm btn-success m-auto"
+                      type="submit"
+                    >
+                      Actualizar
+                    </button>
+                    <button
+                      className="w-50 btn btn-sm btn-danger m-auto"
+                      type="submit"
+                      onClick={formAgregar}
+                    >
+                      Cancelar
+                    </button>
+                  </>
+                )}
                 <hr />
-                <div className="mt-4"></div>
+                <div className="mt-3"></div>
 
                 {/* <NavLink className="nav-link active" aria-current="page" to='/todos'>Home</NavLink> */}
                 <p className="mt-2 mb-3 text-muted">© IPF - 2022</p>
@@ -240,27 +301,14 @@ export const CargarProducto = () => {
             </main>
           </div>
 
-          <div className="col-lg-8 p-1 mt-1">
-            <div>
-              <h2 className="mt-5">
-                <strong>
-                  PRECIO SMART
-                  <br />
-                </strong>
-              </h2>
-              <h3>
-                <strong>Bienvenido estimado COMERCIANTE</strong>{" "}
-              </h3>
-              {/* <img className="mb-4" src={img} alt="" width={80} height={75} /> */}
-            </div>
-
+          <div className="col col-lg-9 mt-1">
             {/* ********************* DIV DE ABAJO ******************************* */}
-            <div className="text-bg-info p-3 rounded-3">
+            <div className="text-bg-info p-1 rounded-3">
               {/* <MisProductos /> */}
               <div className="container ">
                 <div className="row">
-                  <div className="col-lg-12 ">
-                    <h1 className="mt-1">PRODUCTOS</h1>
+                  <div className="col-lg-12 w-100 m-auto">
+                    <h2 className="mt-1">PRODUCTOS</h2>
                     <table className="table table-striped table-hover mt-3 shadow-lg table-control rounded-3">
                       <thead>
                         <tr>
@@ -286,31 +334,49 @@ export const CargarProducto = () => {
                             <td>{prod.idComercio.commerceName}</td>
                             <td>
                               {/* {console.log(prod)} */}
-                              <button
-                                className="btn btn-success mx-1"
-                                onClick={() => editar(prod._id)}
-                              >
-                                
-                                Editar
-                              </button>
-                              <button
-                                className="btn btn-danger mx-1"
-                                onClick={() => eliminar(prod._id)}
-                              >
-                                <span className="mx-1 my-1">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="14"
-                                    fill="currentColor"
-                                    className="bi bi-trash3"
-                                    viewBox="0 0 16 16"
-                                  >
-                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                                  </svg>
-                                </span>
-                                <span className="mx-1 my-1">Eliminar</span>
-                              </button>
+                              <div>
+                                <button
+                                  className="btn btn-success mx-1"
+                                  onClick={() => editar(prod)}
+                                >
+                                  <span className="mx-1 my-1">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="16"
+                                      height="16"
+                                      fill="currentColor"
+                                      className="bi bi-pencil-square"
+                                      viewBox="0 0 16 16"
+                                    >
+                                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                      <path
+                                        fillRule="evenodd"
+                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </button>
+                              </div>
+
+                              <div>
+                                <button
+                                  className="btn btn-danger mx-1"
+                                  onClick={() => eliminar(prod._id)}
+                                >
+                                  <span className="mx-1 my-1">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="16"
+                                      height="14"
+                                      fill="currentColor"
+                                      className="bi bi-trash3"
+                                      viewBox="0 0 16 16"
+                                    >
+                                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                    </svg>
+                                  </span>
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
