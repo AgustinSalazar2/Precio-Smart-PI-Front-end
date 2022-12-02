@@ -107,27 +107,27 @@ export const CargarProducto = () => {
   };
 
   // *********************   FUNCIÓN EDITAR  ***********************************
-  const [formulario, setform] = useState({
+  const [formulario, setFormulario] = useState({
     formAdd: true,
   });
 
   const formEditar = () => {
-    setform({
+    setFormulario({
       formAdd: false,
     });
   };
 
   const formAgregar = () => {
-    setform({
-      formAdd: true,
-    });
-    setState({
+    // setFormulario({
+    //   formAdd: true,
+    // });
+    /* setState({
       categoria: "",
       productName: "",
       marca: "",
       presentacion: "",
       precio: 0,
-    });
+    }); */
   };
 
   const editar = async (producto) => {
@@ -175,6 +175,9 @@ export const CargarProducto = () => {
           presentacion: "",
           precio: 0,
         });
+        setFormulario({
+          formAdd: true,
+        });
       }
 
     })();
@@ -192,15 +195,18 @@ export const CargarProducto = () => {
               
               <form onSubmit={formulario.formAdd ? handleSubmit : submitEditar} className="form-control mt-5">
 
-                {formulario.formAdd ? (
+                {formulario.formAdd 
+                ? (
                   <label htmlFor="nombProd" className="mb-1">
                     <strong>INGRESE LOS DATOS DE SUS PRODUCTOS</strong>
                   </label>
-                ) : (
+                  ) 
+                : (
                   <label htmlFor="nombProd" className="mb-1">
                     <strong>MODIFIQUE LOS DATOS DE SU PRODUCTO</strong>
                   </label>
-                )}
+                  )
+                }
 
                 <div className="form-floating mb-2 mt-3">
                   <div className="form mb-2">
@@ -268,30 +274,33 @@ export const CargarProducto = () => {
                     {/* <label htmlFor="precioProd">Ingrese el nombre producto que desea cargar</label> */}
                   </div>
                 </div>
-                {formulario.formAdd ? (
+                {formulario.formAdd 
+                  ? (
                   <button
                     className="w-100 btn btn-md btn-primary mb-2"
                     type="submit"
                   >
                     Agregar
                   </button>
-                ) : (
-                  <>
-                    <button
-                      className="w-50 btn btn-sm btn-success m-auto"
-                      type="submit"
-                    >
-                      Actualizar
-                    </button>
-                    <button
-                      className="w-50 btn btn-sm btn-danger m-auto"
-                      type="submit"
-                      onClick={formAgregar}
-                    >
-                      Cancelar
-                    </button>
-                  </>
-                )}
+                    ) 
+                  : 
+                    (
+                    <>
+                      <button
+                        className="w-50 btn btn-sm btn-success m-auto"
+                        type="submit"
+                      >
+                        Actualizar
+                      </button>
+                      <button
+                        className="w-50 btn btn-sm btn-danger m-auto"
+                        type="submit"
+                        onClick={formAgregar}
+                      >
+                        Cancelar
+                      </button>
+                    </>
+                    )}
                 <hr />
                 <div className="mt-3"></div>
 
