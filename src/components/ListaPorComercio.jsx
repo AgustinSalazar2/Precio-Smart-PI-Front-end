@@ -7,6 +7,7 @@ import { ProductItems } from "./productItems";
 
 export const ListaPorComercio = () => {
   const [products, setProducts] = useState([]);
+  
   const showData = async () => {
     const resp = await fetch('http://localhost:4000/productos')
     const data = await resp.json()
@@ -56,7 +57,7 @@ export const ListaPorComercio = () => {
     }
     agrupadoPorComercio[comercio].push(producto);
   });
-  // console.log(agrupadoPorComercio)
+  console.log('Agrupados por comercio', agrupadoPorComercio)
 
 
   //************** LISTADO DE PRODUCTOS DEL CARRITO AGRUPADOS POR COMERCIOS *************/
@@ -70,6 +71,7 @@ export const ListaPorComercio = () => {
         listadoDeProductosPorComercio[comercioIndex] = [];
       }
       agrupado[comerce].map((productiño) => {
+        //productiño es un producto que está en el array que se encuentra en el objeto que lista (en forma de arrays) los prductos agrupados por comercio. Es decir,  en "agrupadoPorComercio". "agrupadoPorComercio" es un objeto de arrays, donde cada array tiene los productos que pertencen a un comercio.
         carrito.map((item) => {
           // if (productiño.productName.toLowerCase().includes(item.productName.toLocaleLowerCase())) {
           //   listadoDeProductosPorComercio[comercioIndex].push(productiño);
@@ -81,9 +83,9 @@ export const ListaPorComercio = () => {
             productiño.marca
               .toLowerCase()
               .includes(item.marca.toLocaleLowerCase())
-          ) {
-            listadoDeProductosPorComercio[comercioIndex].push(productiño);
-          }
+              ) {
+                  listadoDeProductosPorComercio[comercioIndex].push(productiño);
+                }
         });
       });
     }
@@ -110,7 +112,23 @@ export const ListaPorComercio = () => {
           <div className="col col-lg-4">
             <h2>Carrito de compras</h2>
             <article>
-              <button type="button" className="btn btn-danger" onClick={clearCart}>Limpiar carrito</button>
+              <div className="container">
+                <div className="row">
+                  <div className="col-8">
+                  
+                    <p>
+                      Costo del carrito:
+                      <span>$$</span>
+                    </p>
+                  </div>
+                  <div className="col-4">
+                    <button type="button" className="btn btn-danger" onClick={clearCart}>
+                      Limpiar carrito
+                    </button>
+                  </div>
+                </div>
+
+              </div>
 
                 {
                   cart.map((product, i)=>(<CartItems key={i} data={product} />))
