@@ -46,6 +46,52 @@ export const ListaPorComercio = () => {
 
   }
 
+  //********   PRODUCTOS AGRUPADOS POR COMERCIO   ************/
+  const agrupadoPorComercio = {};
+
+  products.forEach((producto) => {
+    const comercio = producto.idComercio.commerceName;
+    if (!agrupadoPorComercio[comercio]) {
+      agrupadoPorComercio[comercio] = [];
+    }
+    agrupadoPorComercio[comercio].push(producto);
+  });
+  // console.log(agrupadoPorComercio)
+
+
+  //************** LISTADO DE PRODUCTOS DEL CARRITO AGRUPADOS POR COMERCIOS *************/
+
+  const listaPorComercios = (agrupado, carrito) => {
+    let listadoDeProductosPorComercio = {};
+
+    for (let comerce in agrupado) {
+      let comercioIndex = comerce;
+      if (!listadoDeProductosPorComercio[comercioIndex]) {
+        listadoDeProductosPorComercio[comercioIndex] = [];
+      }
+      agrupado[comerce].map((productiño) => {
+        carrito.map((item) => {
+          // if (productiño.productName.toLowerCase().includes(item.productName.toLocaleLowerCase())) {
+          //   listadoDeProductosPorComercio[comercioIndex].push(productiño);
+          // }
+          if (
+            productiño.productName
+              .toLowerCase()
+              .includes(item.productName.toLocaleLowerCase()) &&
+            productiño.marca
+              .toLowerCase()
+              .includes(item.marca.toLocaleLowerCase())
+          ) {
+            listadoDeProductosPorComercio[comercioIndex].push(productiño);
+          }
+        });
+      });
+    }
+    return listadoDeProductosPorComercio;
+  };
+
+  console.log(listaPorComercios(agrupadoPorComercio, cart))
+
   return (
     <>
       <div className="container">
