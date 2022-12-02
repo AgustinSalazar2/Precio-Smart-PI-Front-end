@@ -61,6 +61,21 @@ export const CargarProducto = () => {
 
       const data = await resp.json();
       console.log(data);
+      if (resp.ok) {
+        showData();
+        setState({
+          categoria: "",
+          productName: "",
+          marca: "",
+          presentacion: "",
+          precio: 0,
+        });
+        setFormulario({
+          formAdd: true,
+        });
+      }
+
+
     })();
   };
 
@@ -121,13 +136,14 @@ export const CargarProducto = () => {
     // setFormulario({
     //   formAdd: true,
     // });
-    /* setState({
-      categoria: "",
-      productName: "",
-      marca: "",
-      presentacion: "",
-      precio: 0,
-    }); */
+    // setState({
+    //   categoria: "",
+    //   productName: "",
+    //   marca: "",
+    //   presentacion: "",
+    //   precio: 0,
+    // });
+    console.log('Se ejecuta el formAgregar pero no hace nada')
   };
 
   const editar = async (producto) => {
@@ -144,7 +160,7 @@ export const CargarProducto = () => {
 
   const submitEditar = (e) => {
     e.preventDefault();
-    // console.log('Editando...');
+    console.log('Editando... HAY QUE PONER UN SPIN Y QUE EL USUARIO NO PUEDA HACER NADA MIENTRAS SE ESTÁ EDITANDO');
     // return
 
     (async () => {
