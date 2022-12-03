@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "../assets/signin.css";
+// import "../assets/signin.css";
 import img from "../assets/img/verificar.png";
 import { AuthContext } from "../context/AuthContext";
 import { type } from "../types/type";
@@ -77,7 +77,7 @@ export const Login = () => {
     
     (async () => {
       // Se modifican las opciones del fetch, añadiendo los datos del formulario
-      options.body = JSON.stringify({ username, password, email, rol:"cliente" });
+      options.body = JSON.stringify({ username, password, email, rol });
 
       const resp = await fetch("http://localhost:4000/user", options);
 

@@ -28,7 +28,7 @@ export const NavBar = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link active hover:"  aria-current="page" to="/">
-                Comercios
+                Mi Comercio
               </NavLink>
             </li>
 
@@ -59,7 +59,22 @@ export const NavBar = () => {
                 Cargar Productos
               </NavLink>
             </li>
+
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" to="#">
+                |
+              </a>
+            </li>
+
+            <li className="nav-item">
+              <NavLink className="nav-link active" to="/foroComer">
+                Foro de Negocios
+              </NavLink>
+            </li>
+
+
           </ul>
+          
 
           <li className="nav-item ms-auto">
             <button

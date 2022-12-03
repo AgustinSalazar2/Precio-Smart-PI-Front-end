@@ -31,6 +31,7 @@ export const CargarProducto = () => {
   //*****************************  FUNCIÓN PARA ENVIAR LOS DATOS (BOTON) ******** */
 
   const usuarioComercio = JSON.parse(localStorage.getItem("user"));
+  console.log(usuarioComercio)
   const comercioId = usuarioComercio.comercio._id;
 
   const handleSubmit = (e) => {
@@ -50,7 +51,7 @@ export const CargarProducto = () => {
       });
 
       if (categoria === "Seleccione una categoría") {
-        console.error("Seleccione una categoria plis");
+        console.error("Seleccione una categoria por favor");
         return;
       }
 
