@@ -13,9 +13,9 @@ export const BuscarProductos = () => {
   // }
 
   //funcion para extraer los datos de la API
-  const URL = "http://localhost:4000/productos";
-
+  
   const showData = async ()=>{
+    const URL = "http://localhost:4000/productos";
     const response = await fetch(URL);
     const data = await response.json();
     // console.log(data);
@@ -60,6 +60,7 @@ export const BuscarProductos = () => {
   },[])
   
   //Renderizado
+  console.log(products);
   return (
 
     <>
