@@ -4,17 +4,22 @@ export const ProductItems = ({data, addToCart}) => {
 // console.log(data)
 // console.log(addToCart)
   return (
-    <div className="col-lg-3 col-md-6">
-      <div className="card">
-        <div className="card-body">
-          <h3>{data.productName}</h3>
-          <h4>{data.marca}</h4>
-          <h4>{data.precio}</h4>
-          <button type="button" className="btn btn-primary" onClick={()=>addToCart(data._id)}>
-            Agregar al Carrito
-          </button>
-        </div>
-      </div>
-    </div>
+    <tr key={data._id}>
+      <td><small>{data.productName}</small></td>
+      <td><small>{data.marca}</small></td>
+      <td><small>{data.presentacion}</small></td>
+      <td><small><button type="button" className="btn btn-primary btn-xs" onClick={()=>addToCart(data._id)}><small>Add</small></button></small></td>
+    </tr>
+
+    // <div className="col-lg-3 col-md-6">
+    //   <div className="card">
+    //     <div className="card-body">
+    //       <p>{data.productName}</p>
+    //       <p>{data.marca}</p>
+    //       {/* <p>{data.precio}</p> */}
+    //       <button type="button" className="btn btn-primary btn-sm" onClick={()=>addToCart(data._id)}>Add to Cart</button>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };

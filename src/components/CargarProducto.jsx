@@ -84,15 +84,15 @@ export const CargarProducto = () => {
   // *******************  Renderizado de productos propios ***********************
   const [products, setProducts] = useState([]);
 
-  const URL = "http://localhost:4000/productos";
-
+  
   //************************************/
-
+  
   const showData = async () => {
+    const URL = "http://localhost:4000/productos";
     const response = await fetch(URL);
 
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
     setProducts(data);
   };
 
