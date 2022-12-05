@@ -22,6 +22,7 @@ export const CargarComercio = () => {
   });
 
   const { commerceName, direccion, phone } = state;
+
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
     setState({
@@ -68,7 +69,11 @@ export const CargarComercio = () => {
         localStorage.setItem("user", JSON.stringify(user));
 
       }
-      
+      setState({
+        commerceName: "",
+        direccion: "",
+        phone: ""
+      })
     })();
   };
 
@@ -83,7 +88,7 @@ export const CargarComercio = () => {
                 {/* <img className="mb-4" src="" alt="" width={72} height={57} /> */}
                 {/* <h1 className="h3 mb-3 fw-normal">Inicio de Sesión</h1> */}
                 <label htmlFor="nombProd">
-                  <strong>INGRESE LOS DATOS DE SU COMERCIO</strong>
+                  <strong>INGRESE LOS DATOS DE SU COMERCIO PARA PODER CARGAR SUS PRODUCTOS</strong>
                 </label>
                 <div className="form-floating mb-2 mt-5">
                   <div className="form mb-2">

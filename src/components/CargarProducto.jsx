@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../assets/signin.css";
+
 export const CargarProducto = () => {
   const options = {
     method: "POST",
@@ -203,6 +204,7 @@ export const CargarProducto = () => {
   // console.log(state)
   // console.log(formulario)
 
+// %%%%%%%%%%%%%%%%%%%%%%%%%%      RETURN        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   return (
     <>
       <div className="container p-3">

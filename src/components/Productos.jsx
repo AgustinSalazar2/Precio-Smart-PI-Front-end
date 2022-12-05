@@ -7,7 +7,6 @@ export const Productos = () => {
 
     //************************************/
 
-
   const showData = async () => {
 
     const response = await fetch(URL);
