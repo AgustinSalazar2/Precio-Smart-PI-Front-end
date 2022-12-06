@@ -14,11 +14,12 @@ export const CarritoPorComercio = ({ data }) => {
           <div className="col-lg-6 container">
             {comercio[0] && (
               <div key={index}>
-                <div className="row border m-auto">
+                <div className="row m-auto">
                   <div>
                     <h5><b>{comercio[0].idComercio.commerceName}</b></h5>
+                    <b>{comercio[0].idComercio.direccion}</b>
                     <div hidden={true}>{(precioTotal = 0)}</div>
-                    <table className="table table-striped table-hover mt-2 shadow-lg table-control">
+                    <table className="table table-striped table-hover mt-2 shadow-lg table-control rounded">
                       <thead>
                         <tr>
                           <th><small>Nombre</small></th>

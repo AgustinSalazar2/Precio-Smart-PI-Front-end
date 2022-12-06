@@ -38,7 +38,7 @@ export const NavBarCliente = () => {
             <li className="nav-item ms-auto">
               <button 
                 onClick={()=>authDispatch({type: type.logout})} 
-                className="btn btn-outline-dark btn-sm bg-danger"
+                className="btn btn-outline-light btn-sm bg-danger text-white"
               >
                 Cerrar Sesión
               </button>

@@ -29,6 +29,7 @@ export const BuscarProductos = () => {
     const categoria = e.target.value
     if(categoria === 'todos'){
       showData()
+      return
     }
     // console.log(categoria)
     const URL = `http://localhost:4000/products/${categoria}`
@@ -42,18 +43,19 @@ export const BuscarProductos = () => {
   const filtredDataByComercio = async ( evComercio ) => {
     // console.log(e.target.value);
     const idComercio = evComercio.target.value;
-    if (idComercio === "todos" || idComercio === 'comercio') {
+    if (idComercio === "todos" || idComercio === "comercio") {
       showData();
+      return
     }
     // console.log("CLG-front. Lo que seleccione del select: ", comercio);
     const URL = `http://localhost:4000/products-comercio/${idComercio}`;
     const resp = await fetch(URL);
-    console.log('clg-front. La resp de la petición en la fcn filtredDataByComercio: ', resp)
+    // console.log('clg-front. La resp de la petición en la fcn filtredDataByComercio: ', resp)
     const dataComercio = await resp.json();
 
     //!
     setProducts(dataComercio);
-    console.log('CLG front-La data que me trae la petición al back de los productos por comercio', dataComercio);
+    // console.log('CLG front-La data que me trae la petición al back de los productos por comercio', dataComercio);
   };
 
   //! Funcion de BÚSQUEDA
@@ -81,7 +83,7 @@ export const BuscarProductos = () => {
   },[])
   
   //Renderizado
-  console.log('CLG front - Los productos en el estado', products);
+  // console.log('CLG front - Los productos en el estado', products);
   return (
 
     <>
@@ -176,7 +178,7 @@ export const BuscarProductos = () => {
                 <td>{prod.marca}</td>
                 <td>{prod.presentacion}</td>
                 <td>${prod.precio}</td>
-                <td>{prod.idComercio.commerceName}</td>
+                <td title={prod.idComercio.direccion}>{prod.idComercio.commerceName}</td>
               </tr>
             ))}
           </tbody>

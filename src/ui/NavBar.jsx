@@ -108,7 +108,7 @@ export const NavBar = () => {
           <li className="nav-item ms-auto">
             <button
               onClick={() => authDispatch({ type: type.logout })}
-              className=" btn btn-sm btn-danger"
+              className=" btn btn-sm btn-danger text-white"
             >
               Cerrar Sesión
             </button>

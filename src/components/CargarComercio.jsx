@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-
+import { useNavigate } from 'react-router-dom'
 import "../assets/signin.css";
 import img from "../assets/img/verificar.png";
 import { Bienvenida } from "./Bienvenida";
+// import { CargarProducto } from "./CargarProducto";
 
 export const CargarComercio = () => {
+  const navigate = useNavigate()
 
   const user = JSON.parse(localStorage.getItem('user')) 
+
+  // if (user.comercio) {
+  //   return navigate("/add-prod")
+  // }
 
   const options = {
     method: "POST",
@@ -36,9 +42,6 @@ export const CargarComercio = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    
-    
 
     (async () => {
       // Se modifican las opciones del fetch, añadiendo los datos del formulario
@@ -71,21 +74,16 @@ export const CargarComercio = () => {
 
         //Se setean los datos del usuario en el local storage
         localStorage.setItem("user", JSON.stringify(user));
-
-        useEffect(() => {
-    
-          return () => {
-            
-          }
-        }, [])
-
       }
       setState({
         commerceName: "",
         direccion: "",
         phone: ""
       })
+      navigate("/add-prod")
     })();
+
+
   };
 
 

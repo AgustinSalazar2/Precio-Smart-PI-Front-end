@@ -126,11 +126,11 @@ export const ListaPorComercio = () => {
       <div className="container mt-3">
         <div className="row">
           {listado.typo == false ? (
-            <div className="col col-lg-8 border">
-              <h5>Listado de productos</h5>
+            <div className="col col-lg-7">
+              <h4><b>Listado de productos</b></h4>
               <div className="container">
                 <div className="row col-lg-12">
-                  <table className="table table-striped table-hover shadow-lg table-control">
+                  <table className="table table-striped table-hover shadow-lg table-control rounded">
                     <thead>
                       <tr>
                         <th><small>Nombre</small></th>
@@ -161,7 +161,7 @@ export const ListaPorComercio = () => {
               </div>
             </div>
           ) : (
-            <div className="col col-lg-8">
+            <div className="col col-lg-7">
               <div className="container">
                 <div className="row">
                   <CarritoPorComercio data={listado} />
@@ -170,9 +170,9 @@ export const ListaPorComercio = () => {
             </div>
           )}
 
-          <div className="col col-lg-4 border">
+          <div className="col col-lg-5">
             <article className="container">
-              <div className="row mb-2 border mt-3">
+              <div className="row mb-2 mt-3">
                 <h4><b>Carrito de compras</b></h4>
                 <div className="col mb-2">
                   <button
@@ -186,14 +186,14 @@ export const ListaPorComercio = () => {
 
                 <div className="col mb-2">
                   <button className="btn btn-success" onClick={onclickListado}>
-                    <small>Costo del carrito por comercio</small>
+                    <small>Costo del carrito</small>
                   </button>
                 </div>
               </div>
 
               <div className="container">
-                <div className="row col-lg-12">
-                  <table hidden={(cart.length == 0) ? true : false} className="table table-striped table-hover shadow-lg table-control">
+                <div className="row col-lg-12 col-sm-4">
+                  <table hidden={(cart.length == 0) ? true : false} className="table table-striped table-hover shadow-lg table-control rounded">
                     <thead>
                       <tr>
                         <th><small>Nombre</small></th>
