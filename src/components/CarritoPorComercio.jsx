@@ -3,9 +3,8 @@ import React from "react";
 export const CarritoPorComercio = ({ data }) => {
   // console.log(data);
   let arreglo = [];
-  Object.values(data).map((e) => {
-    arreglo.push(e);
-  });
+  //Object.values(data) me devuelve un array con los valores de las propiedades del objeto data.
+  arreglo = Object.values(data)
   let precioTotal = 0;
   // console.log(arreglo);
   return (
@@ -45,7 +44,9 @@ export const CarritoPorComercio = ({ data }) => {
                       </tbody>
                     </table>
 
-                    <div><b>Precio Total: ${precioTotal}</b></div>
+                    <div>
+                      <b>Precio Total: ${precioTotal}</b>
+                    </div>
                   </div>
                 </div>
               </div>

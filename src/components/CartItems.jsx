@@ -7,8 +7,24 @@ export const CartItems = ({ data, deleteFromCart }) => {
       <td><small>{data.marca}</small></td>
       <td><small>{data.presentacion}</small></td>
       <td><small>{data.cantidad}</small></td>
-      <td><small><button type="button" className="btn btn-primary btn-xs" onClick={()=>deleteFromCart(data._id)}><small>-1</small></button></small></td>
-      <td><small><button type="button" className="btn btn-primary btn-xs" onClick={()=>deleteFromCart(data._id, true)}><small>All</small></button></small></td>
+      <td>
+        <small>
+          <button type="button" className="btn btn-primary btn-sm" onClick={()=>deleteFromCart(data._id)}>
+            <small>
+              Quitar uno
+            </small>
+          </button>
+        </small>
+      </td>
+
+      <td>
+        <small>
+          <button type="button" className="btn btn-warning btn-sm" onClick={()=>deleteFromCart(data._id, true)}>
+            <small>Borrar producto</small>
+          </button>
+        </small>
+      </td>
+
     </tr>
   );
 };

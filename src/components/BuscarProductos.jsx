@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
 export const BuscarProductos = () => {
-     //hook de usestate
+  //hook de usestate
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [comerces, setComerces] = useState([]);
 
-
-  // const cuandoEscribeelUsuario = ({target}) => {
-  //   const palbraClave = target.value
-
-
-  // }
-
-  //funcion para extraer los datos de la API
-  
+  //!Funcion para extraer los PRODUCTOS de la API
   const showData = async ()=>{
     const URL = "http://localhost:4000/productos";
     const response = await fetch(URL);
@@ -22,6 +15,15 @@ export const BuscarProductos = () => {
     setProducts(data)
   }
 
+  //! Función para traer los COMERCIOS de la API
+  const getComercios = async () => {
+    const urlComercios = "http://localhost:4000/comercios";
+    const resp = await fetch(urlComercios);
+    const respJSON = await resp.json();
+    setComerces(respJSON);
+  };
+
+  //!Función que establece el estado de productos en productos por categoría, es decir, me cambia el estado y pone en el array de productos sólo los productos que pertencen a la categría que seleccionó el usuario.
   const filtredData = async (e)=> {
     // console.log(e.target.value);
     const categoria = e.target.value
@@ -35,8 +37,26 @@ export const BuscarProductos = () => {
     // console.log(dataCategoria);
     setProducts(dataCategoria)
   }
-  
-  //Funcion de busqueda
+
+  //! Función que establece el estado de productos en "PRODUCTOS POR COMERCIO", es decir, me cambia el estado y pone en el array de productos sólo los productos que pertencen AL COMERCIO que seleccionó el usuario.
+  const filtredDataByComercio = async ( evComercio ) => {
+    // console.log(e.target.value);
+    const idComercio = evComercio.target.value;
+    if (idComercio === "todos" || idComercio === 'comercio') {
+      showData();
+    }
+    // console.log("CLG-front. Lo que seleccione del select: ", comercio);
+    const URL = `http://localhost:4000/products-comercio/${idComercio}`;
+    const resp = await fetch(URL);
+    console.log('clg-front. La resp de la petición en la fcn filtredDataByComercio: ', resp)
+    const dataComercio = await resp.json();
+
+    //!
+    setProducts(dataComercio);
+    console.log('CLG front-La data que me trae la petición al back de los productos por comercio', dataComercio);
+  };
+
+  //! Funcion de BÚSQUEDA
   const buscador = (e) => {
     setSearch(e.target.value);
 
@@ -57,15 +77,17 @@ export const BuscarProductos = () => {
   //Hook useEfect
   useEffect(()=>{
     showData()
+    getComercios();
   },[])
   
   //Renderizado
-  console.log(products);
+  console.log('CLG front - Los productos en el estado', products);
   return (
 
     <>
       <div className="container justify-content-center col-lg-8 mt-5">
 
+        {/* //!BARRA DE BÚSQUEDA Y FILTRADO */}
         <div className="container">
           <div className="row">
 
@@ -74,30 +96,37 @@ export const BuscarProductos = () => {
                 {/* <label htmlFor="" class="form-label">
                   Zona
                 </label> */}
-                <select className="form-select" name="" id="">
-
-                  <option defaultValue value='zona_1'>Zona 1</option>
-                  <option value='zona_2'>Zona 2</option>
-                  <option value='zona_3'>Zona 3</option>
-                  <option value='zona_4'>Zona 4</option>
-                  <option value='zona_5'>Zona 5</option>
-                  <option value='zona_6'>Zona 6</option>
-                  <option value='zona_7'>Zona 7</option>
-                  <option value='zona_8'>Zona 8</option>
-                  <option value='zona_9'>Zona 9</option>
+                <select 
+                  className="form-select"
+                  name="comercios"
+                  onChange={filtredDataByComercio}
+                >
+                  <option defaultValue value="comercio">
+                    COMERCIO
+                  </option>
+                  <option value="todos">Todos los comercios</option>
+                  {comerces.map((comerce) => (
+                    <option key={comerce._id} value={comerce._id}>
+                      {comerce.commerceName}
+                    </option>
+                    ))
+                  }
                 </select>
               </div>
             </div>
 
             <div className="container col-lg-3 justify-content-center ">
               <div className="mb-3">
-                {/* <label htmlFor="" class="form-label">
-                  Zona
-                </label> */}
-                <select className="form-select form-select" onChange={filtredData}>
+                
+                <select 
+                  className="form-select form-select"
+                  onChange={filtredData}
+                >
 
                   {/* <option defaultValue>Categoría</option> */}
-                  <option defaultValue value="">Categoría</option>
+                  <option defaultValue value="">
+                    CATEGORÍA
+                  </option>
                   <option value="todos">Todos</option>
                   <option value="comestibles">Comestibles</option>
                   <option value="bebidas">Bebidas</option>
@@ -123,20 +152,21 @@ export const BuscarProductos = () => {
 
           </div>
         </div>
-
+        
+        {/* //!TABLA */}
         <table className="table table-striped table-hover mt-5 shadow-lg table-control">
-          <thead>
-            {search ? (
-              <tr>
-                <th>Nombre</th>
-                <th>Marca</th>
-                <th>Presentación</th>
-                <th>Precio</th>
-                <th>Comercio</th>
-              </tr>
+          <thead className='table-active'>
+            <tr>
+              <th>Nombre</th>
+              <th>Marca</th>
+              <th>Presentación</th>
+              <th>Precio</th>
+              <th>Comercio</th>
+            </tr>
+            {/* {search ? (
             ) : (
               <tr></tr>
-            )}
+            )} */}
           </thead>
 
           <tbody>

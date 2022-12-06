@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "../assets/signin.css";
 import img from "../assets/img/verificar.png";
+import { Bienvenida } from "./Bienvenida";
 
 export const CargarComercio = () => {
 
@@ -36,6 +37,9 @@ export const CargarComercio = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    
+    
+
     (async () => {
       // Se modifican las opciones del fetch, añadiendo los datos del formulario
       options.body = JSON.stringify({
@@ -67,6 +71,13 @@ export const CargarComercio = () => {
 
         //Se setean los datos del usuario en el local storage
         localStorage.setItem("user", JSON.stringify(user));
+
+        useEffect(() => {
+    
+          return () => {
+            
+          }
+        }, [])
 
       }
       setState({
@@ -143,14 +154,7 @@ export const CargarComercio = () => {
             </main>
           </div>
 
-          <div className="col-lg-8 p-3 mt-5">
-            
-              <h1 className="mt-5">
-                <strong>PrecioSmart Bienvenido estimado COMERCIANTE</strong>
-              </h1>
-              <img className="mb-4 mt-4"  src={img} alt="" width={120} height={100} />
-          
-          </div>
+          <Bienvenida/>
 
         </div>
       </div>

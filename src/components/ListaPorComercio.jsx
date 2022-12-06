@@ -180,13 +180,13 @@ export const ListaPorComercio = () => {
                     className="btn btn-danger"
                     onClick={clearCart}
                   >
-                    <small>Clear cart</small>
+                    <small>Limpiar carrito</small>
                   </button>
                 </div>
 
                 <div className="col mb-2">
                   <button className="btn btn-success" onClick={onclickListado}>
-                    <small>List for comerce</small>
+                    <small>Costo del carrito por comercio</small>
                   </button>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export const ListaPorComercio = () => {
                         <th><small>Nombre</small></th>
                         <th><small>Marca</small></th>
                         <th><small>Presentación</small></th>
-                        <th><small>/u</small></th>
+                        <th><small>Cantidad</small></th>
                         <th colSpan={2}><small>Accion</small></th>
                       </tr>
                     </thead>

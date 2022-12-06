@@ -23,7 +23,7 @@ export const ForoNego = () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // "Authorization": user.token //!Al pedo dice agustín
+      // "Authorization": user.token //!Al pedo dice Agustín
     },
   };
 
