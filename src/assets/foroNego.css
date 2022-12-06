@@ -7,19 +7,22 @@ body{
 }
 
 body {
-    /* background-image: url(src/assets/img/fondo.jpg); */
-    background: #5433ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
+    background-image: url(src/assets/img/fondo8.jpg); 
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed;
+    
+    /* background: #5433ff;  */
+    /* background: -webkit-linear-gradient(
         to bottom,
         #a5fecb,
         #20bdff,
         #5433ff
-    ); /* Chrome 10-25, Safari 5.1-6 */
+    ); 
     background: linear-gradient(
         to bottom,
         #a5fecb,
         #20bdff,
         #5433ff
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    );  */
 }
 

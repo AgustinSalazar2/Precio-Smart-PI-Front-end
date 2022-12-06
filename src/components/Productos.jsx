@@ -30,18 +30,18 @@ export const Productos = () => {
         <div className="row">
         <div className="col-lg-12">
         <h1 className="mt-3">LISTADO DE PRODUCTOS DE TODOS LOS COMERCIOS</h1>
-        <table className="table table-striped table-hover mt-5 shadow-lg table-control">
-          <thead>
+        <table className="table table-striped table-hover mt-5 shadow-lg table-control rounded border-black">
+          <thead className="thead">
             <tr>
-              <th>Nombre</th>
-              <th>Marca</th>
-              <th>Presentación</th>
-              <th>Precio</th>
-              <th>Comercio</th>
+              <th>NOMBRE</th>
+              <th>MARCA</th>
+              <th>PRESENTACIÓN</th>
+              <th>PRECIO</th>
+              <th>COMERCIO</th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody >
             {products.map((prod) => (
               <tr key={prod._id}>
                 <td>{prod.productName}</td>

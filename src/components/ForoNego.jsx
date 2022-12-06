@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../assets/foroNego.css";
+import "../assets/boton.css";
 // ===============================================================================
 //container ocupa el 90% de la pantalla, fluid el 100.
 //row: agrupa en columnas, y en el otro div hay q darle el tamaño de los items
@@ -56,7 +57,7 @@ export const ForoNego = () => {
 
       const data = await resp.json();
       console.log(data.foroMensaje)
-      setMensajes(prev => [ data.foroMensaje, ...prev])
+      setMensajes(prev => [ ...prev, data.foroMensaje ])
       setPost(initPost)
         // console.log(data);
       
@@ -92,6 +93,8 @@ export const ForoNego = () => {
     showMensajes()
   },[])
 
+  let fecha;
+
   
   // console.log(comerce)
 // %%%%%%%%%%%%%%%%%%%%%%%%%%      RETURN        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -100,7 +103,7 @@ export const ForoNego = () => {
       <div className="container">
         <div className="row">
         <div className="bg-warning rounded mt-2">
-          <h1>BIENVENIDOS AL FORO DE NEGOCIOS</h1>
+          <h1>BIENVENIDO AL FORO DE NEGOCIOS</h1>
         </div>
 
         <div className="foroDescri text-start">
@@ -166,9 +169,12 @@ export const ForoNego = () => {
           </div>
           <br></br>
             {
+              
               mensajes &&
               mensajes.map((mens, i)=>(
-              <div key={i}>
+                <div key={i}>
+                {<b className="">Fecha de creación: {fecha = new Date(mens.updatedAt).toLocaleString()}</b>}
+                {/* {fecha = new Date(mens.updatedAt).toLocaleString()} */}
                 <div className="bg-light border-3 border border-info rounded mb-2">
                   <div className="bg-light border-3 border border-info rounded">
                     <p><strong>Comercio: </strong>{mens.commerceName}</p>
@@ -179,7 +185,8 @@ export const ForoNego = () => {
                       {
                         (mens.commerceName === commerceName )
                         ? (<button
-                              className="btn btn-sm btn-danger mb-2"
+                              className="ov-btn-slide-left"
+                              // className="btn btn-sm btn-danger mb-2"
                               type="submit"
                               onClick={() => eliminarForo(mens._id)}
                             > 
