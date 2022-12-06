@@ -10,6 +10,10 @@ import img from "../assets/img/verificar.png";
 export const NavBar = () => {
   const { authDispatch } = useContext(AuthContext);
 
+  //Extraigo del localstorage el usaurio y me fijo si tiene un comercio cargado
+  const user = JSON.parse(localStorage.getItem('user'));
+  const comerce = user.comercio;
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between align-items-center">
       <div className="container-fluid">
@@ -32,11 +36,11 @@ export const NavBar = () => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link active" aria-current="page" to="#">
                 |
               </a>
-            </li>
+            </li> */}
 
             <li className="nav-item">
               <NavLink
@@ -48,28 +52,53 @@ export const NavBar = () => {
               </NavLink>
             </li>
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link active" aria-current="page" to="#">
                 |
               </a>
-            </li>
+            </li> */}
 
             <li className="nav-item">
-              <NavLink className="nav-link active" to="/add-prod">
-                Cargar Productos
-              </NavLink>
+              
+
+              {
+                comerce
+                ? (
+                  <NavLink className="nav-link active" to="/add-prod">
+                    Cargar Productos
+                  </NavLink>
+                )
+                : (
+                  <NavLink className="nav-link disabled" to="/add-prod">
+                    Cargar Productos
+                  </NavLink>
+                )
+
+              }
             </li>
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link active" aria-current="page" to="#">
                 |
               </a>
-            </li>
+            </li> */}
 
             <li className="nav-item">
-              <NavLink className="nav-link active" to="/foroComer">
-                Foro de Negocios
-              </NavLink>
+              {
+                comerce
+                ? (
+                  <NavLink className="nav-link active" to="/foroComer">
+                    Foro de Negocios
+                  </NavLink>
+                )
+                : (
+                  <NavLink className="nav-link disabled" to="/foroComer">
+                    Foro de Negocios
+                  </NavLink>
+                )
+
+              }
+              
             </li>
 
 

@@ -8,7 +8,13 @@ export const ProductItems = ({data, addToCart}) => {
       <td><small>{data.productName}</small></td>
       <td><small>{data.marca}</small></td>
       <td><small>{data.presentacion}</small></td>
-      <td><small><button type="button" className="btn btn-primary btn-xs" onClick={()=>addToCart(data._id)}><small>Add</small></button></small></td>
+      <td>
+        <small>
+          <button type="button" className="btn btn-outline-danger btn-sm" onClick={()=>addToCart(data._id)}>
+            <small>Agregar</small>
+          </button>
+        </small>
+      </td>
     </tr>
 
     // <div className="col-lg-3 col-md-6">

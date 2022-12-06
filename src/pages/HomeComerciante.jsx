@@ -5,6 +5,7 @@ import { CargarProducto } from '../components/CargarProducto'
 import { Productos } from '../components/Productos'
 import { ForoNego } from '../components/ForoNego'
 import { NavBar } from '../ui/NavBar'
+import { Footer } from '../ui/Footer'
 
 export const HomeComerciante = () => {
   return (
