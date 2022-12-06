@@ -1,3 +1,6 @@
 body{
-    background-image: url(src/assets/img/fondo.jpg);
+    background-image: url(src/assets/img/fondo2.jpg);
+    /* background-repeat: no-repeat; */
+    background-size: cover
+    /* background-position: center center */
 }

@@ -56,16 +56,29 @@ export const ForoNego = () => {
 
       const data = await resp.json();
       console.log(data.foroMensaje)
-      setMensajes(prev => [...prev, data.foroMensaje])
+      setMensajes(prev => [ data.foroMensaje, ...prev])
       setPost(initPost)
         // console.log(data);
       
     })();
   };
 
-
-
+    // ********************  FUNCIÓN PARA ELIMINAR FORO  ***************
   
+    const eliminarForo = async (id) => {
+
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const url = `http://localhost:4000/foro/${id}`;
+      const resp = await fetch(url, options);
+      if (resp.ok) {
+        showMensajes();
+      }
+    };
 
   const URL = "http://localhost:4000/foro";
   // **************   Función para MOSTRAR EL FORO   ****************
@@ -85,13 +98,13 @@ export const ForoNego = () => {
   return (
     <div>
       <div className="container">
-        <div className="row ">
-        <div className="bg-warning">
+        <div className="row">
+        <div className="bg-warning rounded mt-2">
           <h1>BIENVENIDOS AL FORO DE NEGOCIOS</h1>
         </div>
 
         <div className="foroDescri text-start">
-          <p className="bg-info">
+          <p className="bg-info rounded p-1 text-wrap mt-2">
             Aquí los comerciantes registrados podrán enviar propuestas de compra
             - venta, ofertas mayoristas, ofrecer servicios, fletes compartidos y
             todo lo pertinente para abaratar costos de forma asociativa con
@@ -162,6 +175,22 @@ export const ForoNego = () => {
                     <p><strong>{mens.mensaje}</strong></p>
                     <p></p>
                     <h5>Teléfono de contacto: {mens.telefono}</h5>
+                    <div className="d-flex flex-row-reverse mx-2">
+                      {
+                        (mens.commerceName === commerceName )
+                        ? (<button
+                              className="btn btn-sm btn-danger mb-2"
+                              type="submit"
+                              onClick={() => eliminarForo(mens._id)}
+                            > 
+                              Eliminar mensaje
+                            </button>)
+                        : 
+                        <div></div>
+                      }
+                     
+
+                    </div>
                   </div>
                 </div>
 
