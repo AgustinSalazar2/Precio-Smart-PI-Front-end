@@ -27,7 +27,7 @@ export const BuscarProductos = () => {
   const filtredData = async (e)=> {
     // console.log(e.target.value);
     const categoria = e.target.value
-    if(categoria === 'todos'){
+    if(categoria === 'todos' || categoria === 'categoria'){
       showData()
       return
     }
@@ -126,7 +126,7 @@ export const BuscarProductos = () => {
                 >
 
                   {/* <option defaultValue>Categoría</option> */}
-                  <option defaultValue value="">
+                  <option defaultValue value="categoria">
                     CATEGORÍA
                   </option>
                   <option value="todos">Todos</option>

@@ -125,52 +125,57 @@ export const ListaPorComercio = () => {
     <>
       <div className="container mt-3">
         <div className="row">
-          {listado.typo == false ? (
-            <div className="col col-lg-7">
-              <h4><b>Listado de productos</b></h4>
-              <div className="container">
-                <div className="row col-lg-12">
-                  <table className="table table-striped table-hover shadow-lg table-control rounded">
-                    <thead>
-                      <tr>
-                        <th><small>Nombre</small></th>
-                        <th><small>Marca</small></th>
-                        <th><small>Presentación</small></th>
-                        <th><small>Accion</small></th>
-                      </tr>
-                    </thead>
+          {listado.typo == false 
+            ? (
+                <div className="col col-xl-6 col-lg-8">
+                  <h4><b>Listado de productos</b></h4>
+                  <div className="container">
 
-                    <tbody>
-                      {products.map((producto, i) => (
+                    <div className="row col-lg-12">
+                      <table className="table table-striped table-hover shadow-lg table-control rounded">
+                        <thead>
+                          <tr>
+                            <th><small>Nombre</small></th>
+                            <th><small>Marca</small></th>
+                            <th><small>Presentación</small></th>
+                            <th><small>Accion</small></th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {products.map((producto, i) => (
+                            <ProductItems
+                              key={i}
+                              data={producto}
+                              addToCart={addToCart}
+                            />
+                          ))}
+                        </tbody>
+                      </table>
+                      {/* {products.map((producto) => (
                         <ProductItems
-                          key={i}
+                          key={producto._id}
                           data={producto}
                           addToCart={addToCart}
                         />
-                      ))}
-                    </tbody>
-                  </table>
-                  {/* {products.map((producto) => (
-                    <ProductItems
-                      key={producto._id}
-                      data={producto}
-                      addToCart={addToCart}
-                    />
-                  ))} */}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="col col-lg-7">
-              <div className="container">
-                <div className="row">
-                  <CarritoPorComercio data={listado} />
-                </div>
-              </div>
-            </div>
-          )}
+                      ))} */}
+                    </div>
 
-          <div className="col col-lg-5">
+                  </div>
+                </div>
+              ) 
+            : (
+                <div className="col col-xl-3 col-lg-7">
+                  <div className="container">
+                    <div className="row">
+                      <CarritoPorComercio data={listado} />
+                    </div>
+                  </div>
+                </div>
+              )
+          }
+
+          <div className="col col-xl-6 col-lg-4">
             <article className="container">
               <div className="row mb-2 mt-3">
                 <h4><b>Carrito de compras</b></h4>
@@ -191,8 +196,11 @@ export const ListaPorComercio = () => {
                 </div>
               </div>
 
-              <div className="container">
-                <div className="row col-lg-12 col-sm-4">
+              <div className="col col-xl-6 col-lg-4">
+                <div className="container">
+                  <div className="row">
+                    
+                  </div>
                   <table hidden={(cart.length == 0) ? true : false} className="table table-striped table-hover shadow-lg table-control rounded">
                     <thead>
                       <tr>
@@ -211,6 +219,7 @@ export const ListaPorComercio = () => {
                     </tbody>
                   </table>
                 </div>
+
               </div>
             </article>
           </div>
