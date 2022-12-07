@@ -1,4 +1,5 @@
 import React from "react";
+import ShoppingCartCheckoutTwoToneIcon from '@mui/icons-material/ShoppingCartCheckoutTwoTone';
 
 export const ProductItems = ({data, addToCart}) => {
 // console.log(data)
@@ -9,11 +10,13 @@ export const ProductItems = ({data, addToCart}) => {
       <td><small>{data.marca}</small></td>
       <td><small>{data.presentacion}</small></td>
       <td>
-        <small>
+      <ShoppingCartCheckoutTwoToneIcon type="button" fontSize="large" onClick={()=>addToCart(data._id)}/>
+
+        {/* <small>
           <button type="button" className="btn btn-outline-danger btn-sm" onClick={()=>addToCart(data._id)}>
             <small>Agregar</small>
           </button>
-        </small>
+        </small> */}
       </td>
     </tr>
 

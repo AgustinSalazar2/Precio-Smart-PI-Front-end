@@ -11,9 +11,9 @@ export const CarritoPorComercio = ({ data }) => {
     <>
       {arreglo.length > 0 ? (
         arreglo.map((comercio, index) => (
-          <div className="col-lg-6 container">
+          <div key={index} className="col-lg-6 container">
             {comercio[0] && (
-              <div key={index}>
+              <div>
                 <div className="row m-auto">
                   <div>
                     <h5><b>{comercio[0].idComercio.commerceName}</b></h5>

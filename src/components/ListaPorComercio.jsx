@@ -1,5 +1,8 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { cartReducer } from "../reducers/cartReducer";
+import RemoveShoppingCartTwoToneIcon from '@mui/icons-material/RemoveShoppingCartTwoTone';
+import CalculateTwoToneIcon from '@mui/icons-material/CalculateTwoTone';
+import PriceChangeTwoToneIcon from '@mui/icons-material/PriceChangeTwoTone';
 import { TYPES } from "../types/typesCarrito";
 import { CarritoPorComercio } from "./CarritoPorComercio";
 import { CartItems } from "./cartItems";
@@ -175,19 +178,24 @@ export const ListaPorComercio = () => {
               <div className="row mb-2 mt-3">
                 <h4><b>Carrito de compras</b></h4>
                 <div className="col mb-2">
-                  <button
+                <RemoveShoppingCartTwoToneIcon type="button" fontSize="large" onClick={clearCart}/>
+
+                  {/* <button
                     type="button"
                     className="btn btn-danger"
                     onClick={clearCart}
                   >
                     <small>Limpiar carrito</small>
-                  </button>
+                  </button> */}
                 </div>
 
-                <div className="col mb-2">
-                  <button className="btn btn-success" onClick={onclickListado}>
+                <div className="col mb-2" onClick={onclickListado} type="button">
+                <CalculateTwoToneIcon fontSize="large" />
+                <PriceChangeTwoToneIcon fontSize="large" />
+                <br />Compare
+                  {/* <button className="btn btn-success" onClick={onclickListado}>
                     <small>Costo del carrito</small>
-                  </button>
+                  </button> */}
                 </div>
               </div>
 
