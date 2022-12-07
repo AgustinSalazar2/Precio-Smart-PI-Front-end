@@ -138,7 +138,7 @@ export const CargarComercio = () => {
                 </div>
 
                 <button
-                  className="w-50 btn btn-md btn-primary mb-2"
+                  className="w-75 btn btn-md btn-primary mb-2"
                   type="submit"
                 >
                   Agregar comercio

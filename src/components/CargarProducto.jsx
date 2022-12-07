@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import "../assets/signin.css";
 
 export const CargarProducto = () => {
@@ -10,7 +12,7 @@ export const CargarProducto = () => {
   };
 
   const [state, setState] = useState({
-    categoria: "",
+    categoria: "Seleccione una categoría",
     productName: "",
     marca: "",
     presentacion: "",
@@ -18,8 +20,7 @@ export const CargarProducto = () => {
     idProducto: null,
   });
 
-  const { categoria, productName, marca, presentacion, precio, idProducto } =
-    state;
+  const { categoria, productName, marca, presentacion, precio, idProducto } = state;
 
   // ************  FUNCIÓN QUE CAPTURA LOS VALORES DE LOS INPUTS ****************
   const handleInputChange = ({ target }) => {
@@ -32,7 +33,7 @@ export const CargarProducto = () => {
   //*****************************  FUNCIÓN PARA ENVIAR LOS DATOS (BOTON) ******** */
 
   const usuarioComercio = JSON.parse(localStorage.getItem("user"));
-  console.log(usuarioComercio)
+  // console.log(usuarioComercio)
   const comercioId = usuarioComercio.comercio._id;
 
   const handleSubmit = (e) => {
@@ -62,11 +63,11 @@ export const CargarProducto = () => {
       if (!resp.ok) alert("Revise las credenciales y vuelva a intentarlo");
 
       const data = await resp.json();
-      console.log(data);
+      // console.log(data);
       if (resp.ok) {
         showData();
         setState({
-          categoria: "",
+          categoria: "Seleccione una categoría",
           productName: "",
           marca: "",
           presentacion: "",
@@ -76,8 +77,6 @@ export const CargarProducto = () => {
           formAdd: true,
         });
       }
-
-
     })();
   };
 
@@ -92,7 +91,7 @@ export const CargarProducto = () => {
     const response = await fetch(URL);
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setProducts(data);
   };
 
@@ -134,17 +133,18 @@ export const CargarProducto = () => {
     });
   };
 
-  const formAgregar = () => {
-    // setFormulario({
-    //   formAdd: true,
-    // });
-    // setState({
-    //   categoria: "",
-    //   productName: "",
-    //   marca: "",
-    //   presentacion: "",
-    //   precio: 0,
-    // });
+  const formAgregar = (e) => {
+    e.preventDefault()
+    setFormulario({
+      formAdd: true,
+    })
+    setState({
+      categoria: "Seleccione una categoría",
+      productName: "",
+      marca: "",
+      presentacion: "",
+      precio: 0,
+    });
     console.log('Se ejecuta el formAgregar pero no hace nada')
   };
 
@@ -187,7 +187,7 @@ export const CargarProducto = () => {
       if (resp.ok) {
         showData();
         setState({
-          categoria: "",
+          categoria: "Seleccione una categoría",
           productName: "",
           marca: "",
           presentacion: "",
@@ -212,7 +212,7 @@ export const CargarProducto = () => {
           <div className="col col-lg-3">
             <main className="form-signin w-100 m-auto">
               
-              <form onSubmit={formulario.formAdd ? handleSubmit : submitEditar} className="form-control mt-5">
+              <form onSubmit={formulario.formAdd ? handleSubmit : submitEditar} className="form-control mt-4">
 
                 {formulario.formAdd 
                 ? (
@@ -234,7 +234,7 @@ export const CargarProducto = () => {
                       onChange={handleInputChange}
                       name="categoria"
                     >
-                      <option>Seleccione una categoría</option>
+                      <option value="Seleccione una categoría">Seleccione una categoría</option>
                       <option value="comestibles">Comestibles</option>
                       <option value="bebidas">Bebidas</option>
                       <option value="limpieza">Limpieza</option>
@@ -295,30 +295,32 @@ export const CargarProducto = () => {
                 </div>
                 {formulario.formAdd 
                   ? (
-                  <button
-                    className="w-100 btn btn-md btn-primary mb-2"
+                  <div>
+                    <button
+                    className="w-75 btn btn-md btn-primary mb-2"
                     type="submit"
                   >
                     Agregar
                   </button>
+                  </div>
                     ) 
                   : 
                     (
-                    <>
+                    <div>
                       <button
-                        className="w-50 btn btn-sm btn-success m-auto"
+                        className="w-auto btn btn-md btn-success me-3"
                         type="submit"
                       >
                         Actualizar
                       </button>
                       <button
-                        className="w-50 btn btn-sm btn-danger m-auto"
-                        type="submit"
+                        className="w-auto btn btn-md btn-danger ms-3"
+                        type="button"
                         onClick={formAgregar}
                       >
                         Cancelar
                       </button>
-                    </>
+                    </div>
                     )}
                 <hr />
                 <div className="mt-3"></div>
@@ -329,14 +331,14 @@ export const CargarProducto = () => {
             </main>
           </div>
 
-          <div className="col col-lg-9 mt-1">
+          <div className="col col-lg-9 mt-4">
             {/* ********************* DIV DE ABAJO ******************************* */}
             <div className="text-bg-info p-1 rounded-3">
               {/* <MisProductos /> */}
               <div className="container ">
                 <div className="row">
                   <div className="col-lg-12 w-100 m-auto">
-                    <h2 className="mt-1">PRODUCTOS</h2>
+                    <h2 className="mt-1">MIS PRODUCTOS</h2>
                     <table className="table table-striped table-hover mt-3 shadow-lg table-control rounded-3">
                       <thead>
                         <tr>
@@ -363,7 +365,23 @@ export const CargarProducto = () => {
                             <td>
                               {/* {console.log(prod)} */}
                               <div>
-                                <button
+                                <BorderColorRoundedIcon 
+                                  type="button" 
+                                  fontSize="large"
+                                  className="me-2"
+                                  color="action"
+                                  onClick={() => editar(prod)}
+                                  />
+
+                                <DeleteOutlineRoundedIcon
+                                  type="button" 
+                                  fontSize="large"
+                                  color="error"
+                                  className="ms-3"
+                                  onClick={() => editar(prod)}
+                                />
+
+                                {/* <button
                                   className="btn btn-success mx-1"
                                   onClick={() => editar(prod)}
                                 >
@@ -383,10 +401,10 @@ export const CargarProducto = () => {
                                       />
                                     </svg>
                                   </span>
-                                </button>
+                                </button> */}
                               </div>
 
-                              <div>
+                              {/* <div>
                                 <button
                                   className="btn btn-danger mx-1"
                                   onClick={() => eliminar(prod._id)}
@@ -404,7 +422,7 @@ export const CargarProducto = () => {
                                     </svg>
                                   </span>
                                 </button>
-                              </div>
+                              </div> */}
                             </td>
                           </tr>
                         ))}

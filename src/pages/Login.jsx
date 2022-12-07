@@ -260,7 +260,7 @@ export const Login = () => {
                       <div>
                         <p>
                           <small>
-                            Al hacer clic en "Registrarte", aceptas nuestras
+                            Al hacer clic en <b>"Registrarte"</b>, aceptas nuestras
                             Condiciones, la Política de privacidad y la Política
                             de cookies.
                           </small>

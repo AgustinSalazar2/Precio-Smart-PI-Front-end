@@ -11,3 +11,11 @@ body {
 .thead{
   background-color: cornsilk;
 }
+
+.color-strong-azul {
+  color: blue;
+}
+
+.color-strong-blanco {
+  color: #ffffff;
+}
